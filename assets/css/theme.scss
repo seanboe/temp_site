@@ -9,7 +9,8 @@ $blue:    #3d61fd !default;
 @import 'bootstrap/bootstrap';
 
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito:i|Nunito:b&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
 
 /* add additional CSS rules below */
 html {
@@ -20,7 +21,7 @@ body {
     background:#fff;
     font-size:17px;
     transition: all 200ms linear;
-    font-family: "PT Sans",sans-serif;
+    font-family: "Nunito", Nunito;
     line-height:1.7;
     color: #333;
     overflow-x:hidden;
@@ -28,7 +29,7 @@ body {
     
 }
 .serif-font {
-    font-family:PT Serif;
+    font-family: Nunito;
 }
 @media (max-width: 1366px) {
     .container-xl, .container-lg, .container-md, .container-sm, .container {
@@ -57,8 +58,8 @@ a {
     transition: all .4s;
     &:hover {
         text-decoration:none;
-        color:inherit;
-        transition: all .4s;
+        color:red;
+        transition: all 0.2s;
     }
 }
 img, video {max-width:100%;}
@@ -610,6 +611,6 @@ span.navigation:before {
 }
 
 .hover-opacity:hover {
-    transition: all.3s;
+    transition: all .3s;
     opacity:.8;
 }
