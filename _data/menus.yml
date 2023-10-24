@@ -8,12 +8,14 @@ topmenu:
   url: "about/"
 
 - title: Contact
-  url: "contact/"
-
-- title: Get this theme  
-  url: https://bootstrapstarter.com/template-affiliates-bootstrap-jekyll/
-  class: "ml-2 btn btn-dark text-white px-3"
+  url: "mailto:boeseany21@gmail.com"
   external: true
+
+# Removed button
+# - title: Hello 
+#   url: https://bootstrapstarter.com/template-affiliates-bootstrap-jekyll/
+#   class: "ml-2 btn btn-dark text-white px-3"
+#   external: true
 
 # Footer Menu
 footermenu:
@@ -21,11 +23,12 @@ footermenu:
 - title: Home
   url: ""
 
-- title: Privacy Policy
-  url: "privacy-policy/"
+# - title: Privacy Policy
+#   url: "privacy-policy/"
 
 - title: Contact
-  url: "contact/"
+  url: "mailto:boeseany21@gmail.com"
+  external: true
 
 - title: Download
   url: https://bootstrapstarter.com/template-affiliates-bootstrap-jekyll/  

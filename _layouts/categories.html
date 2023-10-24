@@ -3,8 +3,9 @@ title: "Categories"
 layout: default
 permalink: "/categories.html"
 ---
+<h1>Tags</h1>
 {% for category in site.categories %}
-<h4 class="mt-5 mb-4 pb-2 border-bottom" id="{{ category[0] | replace: " ","-" }}"><span class="text-capitalize small font-weight-bold">In "{{ category[0] }}"</span></h4>
+<h2 class="mt-5 mb-4 pb-2 border-bottom" id="{{ category[0] | replace: " ","-" }}"><span class="text-capitalize small font-italic font-weight-bold">{{ category[0] }}</span></h2>
 <div class="row">
 {% assign pages_list = category[1] %}
 {% for post in pages_list %}
