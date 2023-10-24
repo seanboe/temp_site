@@ -8,6 +8,7 @@ favicon: '🚀'
 # author: Sean
 paginate: 30
 # disqus: 'demowebsite'
+words_per_minute: 200
 locale: en_us
 lang: en_us
 feed_items: 10
@@ -55,3 +56,7 @@ plugins:
 - jekyll-feed
 - jekyll-seo-tag
 - jekyll-archives
+
+exclude:
+- serve.sh
+- /_scripts/
