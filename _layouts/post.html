@@ -34,9 +34,24 @@ post_class: post-template
                 <!-- End Categories -->
                 
                 <!-- Post Title -->
-				<h1 class="posttitle">{{ page.title }}</h1> 
-                
+				<h1 class="">{{ page.title }}</h1> 
+
+        <div class="d-flex align-items-center py-3">
+          <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time></span>           
+
+          &nbsp;
+          &#x2022;
+
+          {% include wpm.html %}
+
+          &#x2022;
+
+          {% include viewcount.html %}
+
+        </div>
+
 			</div>
+      
 
 			
 
@@ -47,14 +62,14 @@ post_class: post-template
 			</div>
 
             <!-- Post Date -->
-            <p>
-            <small>
-                <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time></span>           
-                {% if page.last_modified_at %}
-                (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)
-                {% endif %}
-                </small>
-            </p>
+            <!-- <p> -->
+            <!-- <small> -->
+                <!-- <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time></span>            -->
+                <!-- {% if page.last_modified_at %} -->
+                <!-- (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>) -->
+                <!-- {% endif %} -->
+              <!-- </small> -->
+            <!-- </p> -->
             
 			
             
@@ -108,8 +123,12 @@ post_class: post-template
 
 		<!-- Sidebar -->
         <div class="col-sm-4">
-            {% include sidebar.html %}
-            </div>
+          <a href="google.com">
+            adsfadsf
+          </a>
+
+          {% include sidebar.html %}
+        </div>
         
         
 

@@ -1,13 +1,31 @@
 <div class="sidebar sticky-top">        
 
-  <div class="">
+  {% assign sidebar_file = page.title | downcase | replace: " ", "-" %}
 
-  </div>
+  <!-- {{ site.data.test.test.caption }} -->
+
+  {% if page.layout == 'post' %}
+
+  {{ site.data.post_toc.[sidebar_file] }}
+
+  {% for header in site.data.post_toc.[sidebar_file] %}
+  
 
 
-    {% if page.layout == 'post' %}
-    <h1>Hello</h1>
-    {% else %}
-    <h1>Hi page</h1>
-    {% endif %}
+
+  {% else %}
+  <h1>Hi page</h1>
+  {% endif %}
+
 </div>
+
+
+
+{% for item in site.data.samplelist.toc %}
+    <h3>{{ item.title }}</h3>
+      <ul>
+        {% for entry in item.subfolderitems %}
+          <li><a href="{{ entry.url }}">{{ entry.page }}</a></li>
+        {% endfor %}
+      </ul>
+  {% endfor %}

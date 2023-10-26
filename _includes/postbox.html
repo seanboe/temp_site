@@ -1,7 +1,5 @@
 <!-- begin post -->
 {% assign author = site.authors[post.author] %}
-{% assign words_per_minute = site.words_per_minute | default:200 %}
-{% assign words = post.content | strip_html | number_of_words %}
 
 <div class="card">
     <a href="{{ post.url | absolute_url }}">
@@ -16,12 +14,13 @@
                 &nbsp; &#x2022; &nbsp;
 
                 <span class="reading-time">
-                  {% if words <= words_per_minute %}
-                    1 min read
-                  {% else %}
-                    {{ words | divided_by:words_per_minute }} min read
-                  {% endif %}
+                  {% include wpm.html %}
                 </span>
+
+                &nbsp;
+                &#x2022;
+
+                {% include viewcount.html %}
 
                 <div class="clearfix"></div>
             </div>
