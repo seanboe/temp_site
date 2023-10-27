@@ -20,7 +20,7 @@ image: assets/images/2.jpg
 
 # Header 1
 ## Header 2
-### Header 3
+### Header
 
 The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter. 
 
@@ -30,6 +30,8 @@ As for this particular rendition of Charles Perrault’s classic tale, the text 
 
 
 An 1868 Prang catalogue would later claim that such “books in the shape of a regular paper Doll… originated with us”. 
+
+[heading link](#header-1)
 
 The die cut has also been employed in the non-juvenile sphere as well, a recent example being Jonathan Safran Foer’s ambitious Tree of Codes. 
 

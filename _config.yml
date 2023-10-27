@@ -16,8 +16,10 @@ feed_update_period: daily
 feed_update_frequency: 1
 markdown: kramdown
 kramdown:
-  syntax_highlighter_opts:
-    disable: true
+  syntax_highlighter: rouge
+  # syntax_highlighter_opts:
+  #   disable: true
+  autoids: true
 sass:
   sass_dir: _sass
   style: :compressed

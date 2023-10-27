@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Powerful things you can do with the Markdown editor"
+title:  "Powerful things a Markdown editor can do"
 author: sal
 categories: [ Jekyll, tutorial ]
 image: assets/images/4.jpg

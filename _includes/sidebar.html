@@ -2,30 +2,27 @@
 
   {% assign sidebar_file = page.title | downcase | replace: " ", "-" %}
 
-  <!-- {{ site.data.test.test.caption }} -->
-
   {% if page.layout == 'post' %}
 
-  {{ site.data.post_toc.[sidebar_file] }}
-
-  {% for header in site.data.post_toc.[sidebar_file] %}
-  
-
-
+  <div class="pt-4 pl-3 sidebar-border" data-bs-theme="dark">
+    {% for heading in site.data.post_toc.[sidebar_file].toc %}
+    <a href='#{{heading.title | downcase | replace: " ", "-"}}'><h4 style="color:#1f2937">{{ heading.title }}</h4></a>
+      {% if heading.subsections[0] %}
+        {% for heading2 in heading.subsections %}
+          <a href='#{{heading2.title | downcase | replace: " ", "-"}}'><h6 class="pl-4">{{ heading2.title }}</h6></a>
+          {% if heading2.subsections[0] %}
+            {% for heading3 in heading2.subsections %}
+              <a href='#{{heading3.title | downcase | replace: " ", "-"}}'><i class="pl-5">{{ heading3.title }}</i></a>
+              <br>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  </div>
 
   {% else %}
   <h1>Hi page</h1>
   {% endif %}
 
 </div>
-
-
-
-{% for item in site.data.samplelist.toc %}
-    <h3>{{ item.title }}</h3>
-      <ul>
-        {% for entry in item.subfolderitems %}
-          <li><a href="{{ entry.url }}">{{ entry.page }}</a></li>
-        {% endfor %}
-      </ul>
-  {% endfor %}

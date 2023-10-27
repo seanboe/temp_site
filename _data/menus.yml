@@ -26,13 +26,6 @@ footermenu:
 - title: Home
   url: ""
 
-# - title: Privacy Policy
-#   url: "privacy-policy/"
-
 - title: Contact
   url: "mailto:boeseany21@gmail.com"
-  external: true
-
-- title: Download
-  url: https://bootstrapstarter.com/template-affiliates-bootstrap-jekyll/  
   external: true
