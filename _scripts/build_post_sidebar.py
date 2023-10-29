@@ -27,11 +27,17 @@ for post_file in os.listdir(os.getcwd() + "/_posts/"):
 
       prev_header_level = 0
       prev_header_exists = False
+      within_code = False
       for line in post:
         yaml_output = ""
         header_level = find_letter(line)
+        if line[0] == "`" or line[0:2] == "{%":
+          within_code = not within_code
+        if within_code:
+          continue
         if header_level == 0:
           continue
+
         
         # The correct way to do this is to refer to the previous header level so that everything is relative;
         # I have not done this to force myself to use the headers in order (you should really be styling the headers)

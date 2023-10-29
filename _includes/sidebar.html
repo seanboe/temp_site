@@ -6,7 +6,7 @@
 
   <div class="pt-4 pl-3 sidebar-border" data-bs-theme="dark">
     {% for heading in site.data.post_toc.[sidebar_file].toc %}
-    <a href='#{{heading.title | downcase | replace: " ", "-"}}'><h4 style="color:#1f2937">{{ heading.title }}</h4></a>
+    <a href='#{{heading.title | downcase | replace: " ", "-"}}'><h4>{{ heading.title }}</h4></a>
       {% if heading.subsections[0] %}
         {% for heading2 in heading.subsections %}
           <a href='#{{heading2.title | downcase | replace: " ", "-"}}'><h6 class="pl-4">{{ heading2.title }}</h6></a>

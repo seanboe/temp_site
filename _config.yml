@@ -16,9 +16,9 @@ feed_update_period: daily
 feed_update_frequency: 1
 markdown: kramdown
 kramdown:
-  syntax_highlighter: rouge
-  # syntax_highlighter_opts:
-  #   disable: true
+  # syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    disable: true
   autoids: true
 sass:
   sass_dir: _sass
@@ -48,6 +48,7 @@ ganalytics: UA-113961478-1
 social:
   instagram: https://www.instagram.com/sean.boe/
   github: https://github.com/seanboe
+  youtube: https://www.youtube.com/channel/UCSMmECMAWD-FGQWWuThr7_w
   # facebook: https://www.facebook.com/bootstrapstartercom-346329609045284
   # twitter: https://twitter.com/bstartercom
 
