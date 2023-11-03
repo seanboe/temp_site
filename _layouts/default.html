@@ -35,7 +35,7 @@ gtag('config', '{{site.ganalytics}}');
 </head>   
     
 {% capture layout %}{% if page.layout %}layout-{{ page.layout }}{% endif %}{% endcapture %}
-<body class="{{ layout }}" data-bs-theme="dark">
+<body class="{{ layout }}"">
 
     
 <!-- Menu Navigation -->
@@ -140,7 +140,10 @@ gtag('config', '{{site.ganalytics}}');
 <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>   
 <script src="{{ site.baseurl }}/assets/js/bootstrap.min.js"></script>   
 <script src="{{ site.baseurl }}/assets/js/theme.js"></script>    
-    
+
+<!-- <script type="application/javascript" src="http://api.ipify.org?format=jsonp&callback=get_ip"></script> -->
+
+
 </body>
     
 </html>

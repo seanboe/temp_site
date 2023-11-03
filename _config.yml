@@ -1,7 +1,7 @@
 title: Sean Boerhout
 email: boeseany21@gmail.com
 timezone: UTC
-baseurl: "/blog/"
+baseurl: "/blog"
 permalink: "/:title/"
 logo: '🚀'
 favicon: '🚀'
@@ -23,7 +23,7 @@ kramdown:
 sass:
   sass_dir: _sass
   style: :compressed
-ganalytics: UA-113961478-1
+# ganalytics: UA-113961478-1
 
 # Authors
 # authors:
