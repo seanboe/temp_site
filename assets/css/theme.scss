@@ -57,7 +57,7 @@ body {
     .container-xl, .container-lg, .container-md, .container-sm, .container {
         width:90%;
         max-width:90%;
-        padding:0 25px;
+        padding:0 40px;
     }
 }
 main {min-height:500px;}
@@ -69,6 +69,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 h4, .h4, h5, .h5 {
     line-height:1.4;
+}
+
+.special {
+  background-color: #1C9963;
 }
 
 .font-weight-bold {
@@ -112,7 +116,7 @@ small, .small {
 .start-header {
 	opacity: 1;
 	transform: translateY(0);
-	padding: 20px 0;	
+	padding: 16px 0;	
 	-webkit-transition : all 0.3s ease-out;
 	transition : all 0.3s ease-out;
    
@@ -374,13 +378,26 @@ blockquote {
 
 
 .card {	
-    border:0;
-    background: var(--bg);
+  border:0;
+  background: var(--bg);
+  transition: transform 0.3s ease;
 }
+.card:hover {
+  transform: translateY(-5px) 
+}
+.card a {
+  color: none;
+  transition: color 0.3s ease;
+}
+.card:hover a {
+  color: var(--link-hover);
+}
+
 .card .img-thumb {
 	border-top-right-radius:4px;
 	border-top-left-radius:4px;
 }
+
 ul.tags {
 	list-style:none;
 	padding-left:0;

@@ -31,8 +31,12 @@ for post_file in os.listdir(os.getcwd() + "/_posts/"):
       for line in post:
         yaml_output = ""
         header_level = find_letter(line)
-        if line[0] == "`" or line[0:2] == "{%":
+        if line[0:2] == "{%" or line[0:3] == "```":
           within_code = not within_code
+          if "burning" in title:
+            print("in code")
+            print(line, within_code)
+
         if within_code:
           continue
         if header_level == 0:

@@ -9,14 +9,15 @@ background: '/img/bg-index.jpg'
 {% if page.url == "/" %} 
 <div class="rounded mb-5">
   <div class="row align-items-center justify-content-between">
-    <!-- <div class="col-md-6"> -->
+    <div class="col-md-6">
       <h1 class="font-weight-bold mb-4 serif-font">Sean Boerhout</h1>
       <br>
-      <p class="lead mb-4">My name is Lyam and I'm here to share with you my knowledge and experience of over 10 years of monetizing my blog.</p>
-    <!-- </div> -->
-    <!-- <div class="col-md-6 text-right pl-0 pl-lg-4">
-      <img class="intro" height="500" src="{{site.baseurl}}/assets/images/orange_blob.svg">      
-    </div> -->
+      <p class="lead mb-4">Hi! I'm Sean, a first year at MIT studying electrical and mechanical engineering.</p>
+    </div>
+    <div class="col-md-6 text-center pl-0 pl-lg-4">
+      <img class="intro" height="500" src="{{site.baseurl}}/assets/images/blue_blob2.svg">      
+
+    </div>
   </div>
 </div>
 {% endif %}
@@ -37,24 +38,27 @@ background: '/img/bg-index.jpg'
 <!-- Posts List with Sidebar (except featured)
 ================================================== -->
 <section class="row">
-  <div class="col-sm-8">
-    <div class="row">
+  <!-- <div class="col-sm-8"> -->
+    <!-- <div class="row"> -->
+
       {% for post in paginator.posts %}
+
       {% unless post.featured == true %}
-      <div class="col-md-6 mb-5">
+      <div class="col-md-4 mb-5">
         {% include postbox.html %}
       </div>
       {% endunless %}
       {% endfor %}
-    </div>
+    <!-- </div> -->
     <!-- Pagination -->
     <div class="bottompagination">
       <span class="navigation" role="navigation">
           {% include pagination.html %}
       </span>
     </div>
-  </div>
-  <div class="col-sm-4">
+  <!-- </div> -->
+  <!-- <div class="col-sm-4">
     {% include sidebar.html %}
-  </div>
+  </div> -->
+
 </section>
