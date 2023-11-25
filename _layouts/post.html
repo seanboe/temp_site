@@ -26,7 +26,7 @@ post_class: post-template
                         {% assign sortedCategories = page.categories | sort %}
                         {% for category in sortedCategories %}
                         <li>
-                         <a href="{{ site.baseurl }}/categories#{{ category | slugify }}">{{ category }}</a>
+                         <a href="{{ site.baseurl }}/categories#{{ category | slugify }}" style="text-decoration: none;">{{ category }}</a>
                         </li>
                         {% endfor %}
                     </ul>
@@ -74,12 +74,12 @@ post_class: post-template
             <div class="row PageNavigation mt-4 prevnextlinks d-flex justify-content-between">
               {% if page.previous.url %}
                 <div class="col-md-6 rightborder pl-0">
-                    <a class="thepostlink" href="{{page.previous.url | absolute_url}}">&laquo; {{page.previous.title}}</a>
+                    <a class="thepostlink" href="{{page.previous.url | absolute_url}}" style="text-decoration: none;">&laquo; {{page.previous.title}}</a>
                 </div>
               {% endif %}
               {% if page.next.url %}
                 <div class="col-md-6 text-right pr-0">
-                    <a class="thepostlink" href="{{page.next.url | absolute_url}}">{{page.next.title}} &raquo;</a>
+                    <a class="thepostlink" href="{{page.next.url | absolute_url}}" style="text-decoration: none;">{{page.next.title}} &raquo;</a>
                 </div>
               {% endif %}
             </div>
@@ -120,7 +120,8 @@ post_class: post-template
 
 		<!-- Sidebar -->
         <div class="col-md-4">
-          {% include sidebar.html %}
+          <div class="spacefill">&nbsp;</div>
+            {% include sidebar.html %}
         </div>
         
         

@@ -4,15 +4,18 @@
 
   {% if page.layout == 'post' %}
 
-  <div class="pt-4 pl-3 sidebar-border" data-bs-theme="dark">
+  <div class="pt-2 pl-3 sidebar-border" data-bs-theme="dark">
     {% for heading in site.data.post_toc.[sidebar_file].toc %}
-    <a href="#{{heading.title | downcase | replace: ' ', '-'}}"><h6>{{ heading.title }}</h6></a>
+      {% assign heading_link = heading.title | downcase | replace: " ", "-" | remove: "'" %}
+      <a href="#{{heading_link}}" style="text-decoration: none;"><h6>{{ heading.title }}</h6></a>
       {% if heading.subsections[0] %}
         {% for heading2 in heading.subsections %}
-          <a href="#{{heading2.title | downcase | replace: ' ', '-'}}"><strong class="pl-4">{{ heading2.title }}</strong><br></a>
+          {% assign heading2_link = heading2.title | downcase | replace: " ", "-" | remove: "'" %}
+          <a href="'#{{heading2_link}}'"><strong class="pl-4">{{ heading2.title }}</strong><br></a>
           {% if heading2.subsections[0] %}
             {% for heading3 in heading2.subsections %}
-              <a href="#{{heading3.title | downcase | replace: '' ', '-'}}"><i class="pl-5">{{ heading3.title }}</i></a>
+              {% assign heading3_link = heading3.title | downcase | replace: " ", "-" | remove: "'" %}
+              <a href="#{{heading3_link}}"><i class="pl-5">{{ heading3.title }}</i></a>
               <br>
             {% endfor %}
           {% endif %}
@@ -22,7 +25,7 @@
   </div>
 
   {% else %}
-  <h1>Hi page</h1>
+  <h1>Hi, page</h1>
   {% endif %}
 
 </div>

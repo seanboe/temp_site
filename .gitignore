@@ -5,3 +5,4 @@
 _site
 Gemfile.lock
 _data/post_toc
+.venv

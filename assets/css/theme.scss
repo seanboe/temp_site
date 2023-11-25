@@ -30,8 +30,8 @@
 
 @import 'bootstrap/bootstrap';
 
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Nunito:i|Nunito:b&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito|Nunito:i|Nunito:b&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
 
 /* add additional CSS rules below */
@@ -80,12 +80,14 @@ h4, .h4, h5, .h5 {
 }
 a {
     color:inherit;
-    text-decoration:none;
-    transition: all .4s;
+    text-decoration: underline;
+    text-decoration-color: var(--link-hover);
+    text-decoration-thickness: 2px;
+    transition: all 0.4s;
     &:hover {
-        text-decoration:none;
+        transition: all 0.4s;
+        text-decoration-color: transparent;
         color: var(--link-hover);
-        transition: all 0.2s;
     }
 }
 img, video {max-width:100%;}
@@ -102,6 +104,7 @@ img, video {max-width:100%;}
         color:var(--secondary_text);
         padding:2px 4px;
         border-radius:4px;
+        text-decoration-color: transparent;
     }
 }
 small, .small {
@@ -158,6 +161,12 @@ small, .small {
     .dropdown-item.blog {
         display:none
     }
+}
+
+@media (min-width: 770px) {
+  .spacefill {
+    padding-top: 300px;
+  }
 }
 
 /* Pages
@@ -387,7 +396,8 @@ blockquote {
 }
 .card a {
   color: none;
-  transition: color 0.3s ease;
+  transition: color 0.4s ease;
+  text-decoration: none;
 }
 .card:hover a {
   color: var(--link-hover);
@@ -667,4 +677,30 @@ code {
 figure {
   border-radius: 10px;
   box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.face-image {
+  border-radius: 100%;
+  height: 10em;
+  position: absolute;
+  top: 7vh;
+  left: 12vw;
+}
+
+.intro {
+  position:relative;
+}
+
+.sidebar {
+  text-decoration: none;
+}
+
+@media (max-width: 770px) {
+  .face-on-cover {
+    display: none;
+  }
+}
+
+.navbar-toggler {
+  color: var(--primary_text)
 }

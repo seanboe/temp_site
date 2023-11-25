@@ -1,0 +1,140 @@
+---
+layout: post
+current: post
+cover: assets/images/quadruped_pics/diagrams/legDiagramDXV2.png
+navigation: True
+title: Two axis!
+date: 2021-04-02  10:18:00
+tags: Quadruped
+tag: Quadruped
+class: post-template
+subclass: 'post'
+author: sean
+---
+
+<p>Time to add a new degree of freedom!</p>
+
+<p>In my past posts, I've experimented with controlling foot-shoulder lengths, essentially positioning the foot in one axis. For walking however, each leg needs to be able to move in three axis:
+two to be able to take a step forward and the third to be able to turn. Today I've added the second axis, that allows the foot to move forwards and backwards. Once again, the math is super easy!
+Here's a quick sneak-peak at it working: </p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DYvXy2eE_Ds" frameborder="0" allowfullscreen></iframe>
+
+<h6>Math!</h6>
+
+<p>The math for this movement is quite simple, and builds on what was required for the previous axis (discussed in update 1). Here's the new diagram I'm going to refer to:</p>
+
+<img src="assets/images/quadruped_pics/diagrams/legDiagramDX.png" width=500 />
+
+<h6>Inputs/outputs:</h6>
+<table>
+<tbody>
+<tr class="even">
+<td>Length A</td>
+<td>Input</td>
+</tr>
+<tr>
+<td>Length B:</td>
+<td>Input</td>
+</tr>
+<tr>
+<td>Length C</td>
+<td>Input to shoulder-foot function</td>
+</tr>
+</tbody>
+</table>
+
+<p>The first thing to note is that when the foot moves side to side (as shown in the diagram), two things change: The distance from the should to the foot, and the distance the foot is from the
+  should in the x direction (length <b>B</b>). Naturally, this causes the angles of both motors in the diagram to change slightly, in particular, the motor holding the entire leg (motor next to 
+  angle b). Angle b is most crucial in creating the planned movement, so this is the angle that needs to be solved for. The first thing to do is to solve for length <b>C</b>, which is 
+  simple: pythagorean theorem! This can then be directly inputted into the shoulder-foot function, which calculates the angles necessary to achieve the inputted shoulder-foot length. After that,
+  it is necessary to consider the offset to achieve the x-axis movement, or angle b. This is as simple as using a tangent function, which relates the opposite side of an angle with its adjacent side.
+For angle b, that would mean <i>tan</i>(b) = <sup>B</sup> / <sub>A</sub> , or b = <i>tan</i><sup>-1</sup>( <sup>B</sup> / <sub>A</sub> ). Once b is calculated, it can be used as an offset to direct motor 2
+(the one next to angle b in the diagram). Then it's finished!</p>
+
+<h6>Here's most of the code that solves kinematics angles (includes the stuff from last time, slightly modified).</h6>
+
+{% highlight cpp linenos %}
+void Kinematics::solveFtShldrLength(float demandFtShldr, float *demandAngle2, float *demandAngle3) {
+
+  // Use the Law of Cosines to solve for the angles of motor 3 and convert to degrees
+  float _demandAngle3 = acos( ( pow(demandFtShldr, 2) - pow(LIMB_2, 2) - pow(LIMB_3, 2) ) / (-2 * LIMB_2 * LIMB_3) );
+  _demandAngle3 = ((_demandAngle3 * 180) / PI);   //convert to degrees
+
+  // Use demandAngle3 to calculate for demandAngle2 (angle for M2)
+  float _demandAngle2 = ((180 - _demandAngle3) / 2 );
+
+  *demandAngle2 += _demandAngle2;
+  *demandAngle3 += _demandAngle3;
+};
+
+
+
+void  Kinematics::solveForwardFootMove(int16_t inputX, int16_t inputZ, float *demandAngle2) {
+
+*demandAngle2 = ((atan((float)abs(inputX)/(float)abs(inputZ))*180) / PI);
+
+if (inputX > 0)
+  *demandAngle2 *= -1;
+};
+
+
+
+void Kinematics::solveFootPosition(int16_t inputX, int16_t inputY, int16_t inputZ) {
+  // float demandAngle1 = 0; // this angle isn't necessary (yet) for the currect calculations
+  float demandAngle2 = 0;
+  float demandAngle3 = 0;
+
+  //calculate the demand shoulder-foot length and determine whether it is possible to achieve
+  float demandFtShldrLength = sqrt(pow(abs(inputZ), 2) + pow(abs(inputX), 2));
+  if (demandFtShldrLength > SHOULDER_FOOT_MAX) 
+    demandFtShldrLength = SHOULDER_FOOT_MAX;
+  else if (demandFtShldrLength < SHOULDER_FOOT_MIN)
+    demandFtShldrLength = SHOULDER_FOOT_MIN;
+
+  solveForwardFootMove(inputX, inputZ, &demandAngle2);
+
+  solveFtShldrLength(demandFtShldrLength, &demandAngle2, &demandAngle3);
+
+  // Round off demand angles
+  demandAngle2 = lrint(demandAngle2);
+  demandAngle3 = lrint(demandAngle3);
+
+  // Calculate final demand angles suited to motors by applying necessary offsets
+  demandAngle2 += M2_OFFSET;
+  demandAngle3 = (M3_OFFSET - demandAngle3) + M3_OFFSET;
+
+  // Constrain motor angles
+  demandAngle2 = _applyConstraints(2, demandAngle2);
+  demandAngle3 = _applyConstraints(3, demandAngle3);
+
+  // Set live motor angles to the newly calculated ones
+
+  // motor 2:
+  motor2.angleDegrees = demandAngle2;
+  motor2.angleMicros = _degreesToMicros(motor2.angleDegrees, motor2.calibOffset);
+
+  // motor 3:
+  motor3.angleDegrees = demandAngle3;
+  motor3.angleMicros = _degreesToMicros(motor3.angleDegrees, motor3.calibOffset);
+
+};
+{% endhighlight %}
+
+<hr/>
+
+<h6>Problems (so far)</h6>
+
+<p><b>When moving quickly, the foot first dips down and doesn't stay straight.</b> Ideally, it should stay straight or the entire robot (once finished) won't be staying parallel to the ground.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oZxRlagqjJ4" frameborder="0" allowfullscreen></iframe>
+<p>Slow mo:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7nAzDIn6vr4" frameborder="0" allowfullscreen></iframe>
+
+<p>My interpolation stuff
+was supposed to fix this, but I realize now what I did wrong. I previously interpolated the motor angles, not the end position, however forcing the motors to all stop at the same time doens't guarantee straight movement,
+only that all the motors stop at the same time (obviously). It previously worked because the motors were only travelling on one axis and weren't required to move far. What I should be doing is interpolating the distances 
+the foot needs to move and continuously calculate angles to send to the motors. But instead of doing this right away, I'm going to focus on creating walking gaits, in which case I'll be doing the interpolation part 
+manually. More on that later!</p>
+
+<p>That's all for now!</p>
