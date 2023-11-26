@@ -695,6 +695,20 @@ figure {
   text-decoration: none;
 }
 
+.older-posts {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.newer-posts {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 @media (max-width: 770px) {
   .face-on-cover {
     display: none;
@@ -703,4 +717,16 @@ figure {
 
 .navbar-toggler {
   color: var(--primary_text)
+}
+
+a.anchor {
+  display: block;
+  position: relative;
+  top: -250px;
+  visibility: hidden;
+}
+
+hr {
+  border-top: 1px solid var(--primary_text);
+  padding-bottom: 15px;
 }

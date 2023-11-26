@@ -2,14 +2,8 @@
 layout: post
 current: post
 cover: assets/images/programming/autoformer.png
-navigation: True
 title: Autoformer
-date: 2021-9-23  10:18:00
-tags: programming
-tag: programming
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Programming ]
 ---
 
 At school, whenever entering the library in periods other than lunch, before school, or after school, it is necessary to fill out a google form for attendence. As someone who visits the library every day during these hours, this is incredibly annoying. Using the power of python, I decided to fix this by writing a simple script to automagically fill out the form for me. It's actually incredibly satisfying to watch:

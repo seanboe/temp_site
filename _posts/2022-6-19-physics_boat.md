@@ -4,10 +4,7 @@ current: post
 cover: assets/images/physics_boat.png
 navigation: True
 title: Physics boat
-date: 2022-05-19  10:18:00
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Miscellaneous ]
 ---
 
 After the AP Physics Mechanics and Electricity and Magnetism exams, my physics class had a wooden boat building competition.

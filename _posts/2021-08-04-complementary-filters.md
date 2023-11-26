@@ -4,12 +4,7 @@ current: post
 cover: assets/images/sensors/complementary_filter.png
 navigation: True
 title: Complementary Filters for IMU Fusion
-date: 2021-7-05  10:18:00
-tags: sensors
-tag: sensors
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Miscellaneous ]
 ---
 
 Let's fuse sensors - simply!

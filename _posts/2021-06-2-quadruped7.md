@@ -4,12 +4,7 @@ current: post
 cover: assets/images/PCBs/controlBoardV1.jpeg
 navigation: True
 title: Control Board V1!
-date: 2021-06-5  10:18:00
-tags: Quadruped
-tag: Quadruped
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Quadruped, PCBs ]
 ---
 
 Goodbye sketchy electronics...

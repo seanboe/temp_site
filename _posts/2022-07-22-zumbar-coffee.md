@@ -4,12 +4,7 @@ current: post
 cover: assets/images/zumbar-hero.png
 navigation: True
 title: Coffee!
-date: 2022-07-22  10:18:00
-tags: random
-tag: random
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Miscellaneous ]
 ---
 
 I like coffee now.

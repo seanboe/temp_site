@@ -2,12 +2,8 @@
 layout: post
 current: post
 cover: assets/images/OpenServo/Post1/heroImage.png
-navigation: True
-title: OpenServo V1
-date: 2022-07-26  10:18:00
-class: post-template
-subclass: 'post'
-author: sean
+title: OpenServo Cad!
+categories: [ OpenServo ]
 ---
 
 OpenServo Cad!

@@ -2,13 +2,8 @@
 layout: post
 current: post
 cover: assets/images/arduino_club/tutorial-website.png
-navigation: Club Python Tutorials
-date: 2021-06-20  10:18:00
-tags: Arduino
-tag: Arduino
-class: post-template
-subclass: 'post'
-author: sean
+title: Club Python Tutorials
+categories: [ Miscellaneous ]
 ---
 
 A learning opportunity... for everyone!

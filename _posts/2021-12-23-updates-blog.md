@@ -2,14 +2,8 @@
 layout: post
 current: post
 cover: assets/images/programming/updates-blog.png
-navigation: True
 title: Updates Blog
-date: 2021-12-23  10:18:00
-tags: programming
-tag: programming
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Miscellaneous ]
 ---
 
 I decided to make a new blog (don't worry, this one isn't going away!) 

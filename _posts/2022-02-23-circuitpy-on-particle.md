@@ -2,12 +2,8 @@
 layout: post
 current: post
 cover: assets/images/particle-circuitpy.png
-navigation: True
 title: Converting particle devices to circuit python
-date: 2022-02-21  10:18:00
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Miscellaneous ]
 ---
 
 How to convert particle Xenon, Argon, and (theoretically) Boron devices to circuit python. 

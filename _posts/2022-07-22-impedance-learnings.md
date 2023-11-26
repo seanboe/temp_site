@@ -2,12 +2,8 @@
 layout: post
 current: post
 cover: assets/images/impedance-learnings-hero.png
-navigation: True
 title: Summer learnings
-date: 2022-7-22  10:19:00
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Miscellaneous ]
 ---
 
 Just a recap of some things I've been studying.

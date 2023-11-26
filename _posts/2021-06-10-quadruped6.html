@@ -4,12 +4,7 @@ current: post
 cover: assets/images/quadruped_pics/Hardware/finished.jpeg
 navigation: True
 title: Building the Robot!
-date: 2021-06-10  10:18:00
-tags: Quadruped
-tag: Quadruped
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Quadruped ]
 ---
 
 <p>Ready to see this thing finished?</p>
@@ -21,7 +16,7 @@ author: sean
   It was time to put the robot together!</p>
 
 <p>First I started assembling the legs. This is pretty easy, as there are only a few screws, but getting the bearing and axle in is a bit tedious.
-  <img src="assets/images/quadruped_pics/Hardware/desk3.jpeg" width=600 style="border-radius: 10px;" /></p>
+  <img src="{{site.baseurl}}/assets/images/quadruped_pics/Hardware/desk3.jpeg" width=600 style="border-radius: 10px;" /></p>
 
 
 <p>Next, I had to get the shoulder motors assembled. This took a really long time, because there are many screws and everything needs to be 
@@ -32,11 +27,11 @@ author: sean
   fit together well. The big blue piece saves some trouble too since it didn't need to be broken into smaller parts (it was a 12 hour print... the longest
   ever on my home printer!). </p>
 
-  <img src="assets/images/quadruped_pics/Hardware/desk2.jpeg" width=600 style="border-radius: 10px;"/>
+  <img src="{{site.baseurl}}/assets/images/quadruped_pics/Hardware/desk2.jpeg" width=600 style="border-radius: 10px;"/>
 
 <p>Eventually, I had almost everything assembled. The last part was the cabling, which took an unexpectedly long time; nearly an hour and a half.</p>
 
-<img src="assets/images/quadruped_pics/Hardware/wires.jpeg" width=600 style="border-radius: 10px;"/>
+<img src="{{site.baseurl}}/assets/images/quadruped_pics/Hardware/wires.jpeg" width=600 style="border-radius: 10px;"/>
 
 <p>But in the end, I finished it! The entire assembly process took around 5 hours. One of the most important things to do during the build is the make
   sure that all the servo horns are in the right position. Since the servos can only turn 270 degrees and have a set 0 position, they increase in angle in different 
@@ -95,10 +90,10 @@ uint16_t degreesToMicros(uint8_t inputDegrees, uint8_t calibOffset) {
 <p>You can find a complete bill of materials <a href="https://github.com/seanboe/QuadrupedProject">here</a>.</p>
 
 <p><i>Messy, much?</i></p>
-<img src="assets/images/quadruped_pics/Hardware/desk1.jpeg" width=600 style="border-radius: 10px;"/>
+<img src="{{site.baseurl}}/assets/images/quadruped_pics/Hardware/desk1.jpeg" width=600 style="border-radius: 10px;"/>
 
 Final Product:
-<img src="assets/images/quadruped_pics/Hardware/finished.jpeg" width=600 style="border-radius: 10px;"/> 
+<img src="{{site.baseurl}}/assets/images/quadruped_pics/Hardware/finished.jpeg" width=600 style="border-radius: 10px;"/> 
 
 <h4>But wait! There's more!</h4>
 
@@ -109,7 +104,7 @@ Final Product:
 <p>After I verified each motor's connection, I calibrated them and wrote a small program to drive each motor to the bot's stance position. The robot 
   weighs 1.8kg (roughly) and each leg can carry around 1kg, so the robot should've been able to stand. After verifying everything, I got it to stand up unassisted!</p> 
 
-  <img src="assets/images/quadruped_pics/standing1.jpeg" width=600 style="border-radius: 10px;"/>
+  <img src="{{site.baseurl}}/assets/images/quadruped_pics/standing1.jpeg" width=600 style="border-radius: 10px;"/>
 
 <p>The next step was to get my kinematics library to work on this thing. This took a while; when I was originally writing the library, I wasn't sure how well I'd be able
   to implement the math and focussed on that instead of making a true library. This meant that I had some "magic" constants, but also that the calculation was speific to

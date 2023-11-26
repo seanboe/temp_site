@@ -4,10 +4,7 @@ current: post
 cover: assets/images/openocd.png
 navigation: True
 title: OpenOCD for burning bootloaders
-date: 2022-02-21  10:18:00
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ OpenServo ]
 ---
 
 A short explanation on how to use openocd to program the bootloader of an atmega samd21.

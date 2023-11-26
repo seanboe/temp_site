@@ -2,12 +2,8 @@
 layout: post
 current: post
 cover: assets/images/python-serial-with-arduino.png
-navigation: True
 title: Talking to an Arduino over Serial with Python
-date: 2022-03-13  10:18:00
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ OpenServo ]
 ---
 
 How to use the python serial library to talk to an arduino from your computer!

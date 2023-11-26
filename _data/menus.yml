@@ -7,12 +7,16 @@ topmenu:
 - title: Home
   url: ""
 
+- title: Tags
+  url: "categories"
+
 - title: About
   url: "about/"
 
 - title: Contact
   url: "mailto:boeseany21@gmail.com"
   external: true
+
 
 # Removed button
 # - title: Hello 

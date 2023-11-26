@@ -20,10 +20,11 @@ background: '/img/bg-index.jpg'
       </div>
   </div>
 </div>
-{% endif %}
 
 <!-- Featured
 ================================================== -->
+<h4><i>Featured:</i></h4>
+<br>
 <section class="row">
   {% for post in site.posts %}
       {% if post.featured == true %}
@@ -34,6 +35,10 @@ background: '/img/bg-index.jpg'
   {% endfor %}
   </div>
 </section>
+<hr>
+
+{% endif %}
+
 
 <!-- Posts List with Sidebar (except featured)
 ================================================== -->

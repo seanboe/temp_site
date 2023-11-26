@@ -4,10 +4,7 @@ current: post
 cover: assets/images/buck-oscilloscope.png
 navigation: True
 title: Simple Variable Buck Converter
-date: 2022-7-13  10:18:00
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Miscellaneous ]
 ---
 
 Yesterday I built a variable buck converter for fun. It allows you to vary an output voltage from about 12V to 3V or less using PWM.

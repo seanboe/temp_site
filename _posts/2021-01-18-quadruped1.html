@@ -2,14 +2,8 @@
 layout: post
 current: post
 cover: assets/images/quadruped_pics/fusion_renderings/V1Front.png
-navigation: True
 title: Quadruped Robot Update 1!
-date: 2021-01-18  10:18:00
-tags: Quadruped
-tag: Quadruped
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Quadruped ]
 ---
 
 <p>Since last summer, I've been wanting to start on a fairly ambitious project: building a 
@@ -31,7 +25,7 @@ quadruped robot that can walk and do cool static movements.
 
 <p>Best of all, the math is really simple; It's all high school trigonometry!</p>
 <p>Here's the "diagram" I'm going to refer too:</p>
-<p><img src="assets/images/quadruped_pics/diagrams/legDiagramStandard.png" width=500 /></p>
+<p><img src="{{site.baseurl}}/assets/images/quadruped_pics/diagrams/legDiagramStandard.png" width=500 /></p>
 <p>The main idea is to use the law of cosines, which allows you to relate three angles of a triangle to one side: C<sup>2</sup> = A<sup>2</sup>+B<sup>2</sup> - 2ABcos(c). In this case,
 the goal is the move the foot vertically by inputing a demand length from the foot to the shoulder (in the diagram, length <b>C</b>). Since lengths <b>A</b> and length <b>B</b> are constant
 (the literal length of the parts), it is possible to calculate the angle <b>c</b> as long as a feasible demand <b>C</b> is provided. You simply need to rearrange the formula like this:
@@ -92,7 +86,7 @@ nearly <b>1.5kg</b>!</p>
 <p><b>1:&nbsp;&nbsp;Parts keep breaking.</b> More specifically, <i>one</i> part keeps breaking; the one that holds the x-axis motor (the motor that moves the entire leg horizontally,
 from the perspective of the diagram image earlier). If they don't break, they don't grip the motor axle; the motor turns, but nothing else happens.</p>
 <p><b>Update:&nbsp;&nbsp;</b>this problem is fixed! Only took me six iterations...&nbsp;&nbsp;(the sixth one is in the robot currently). Newer versions progress right. </p>
-<p><img src="assets/images/quadruped_pics/M2braceFails.jpeg" width=500 /></p>
+<p><img src="{{site.baseurl}}/assets/images/quadruped_pics/M2braceFails.jpeg" width=500 /></p>
 
 <p><b>2:&nbsp;&nbsp;The PS3/PS4 controller connection is bad.</b> I've been connecting to the main microcontroller (teensy 4.1) from the controllers using this 
 <a href="https://github.com/felis/USB_Host_Shield_2.0" target="_blank"> USB host 2.0 library </a> and a mini USB 2.0 host shield. Right now, the library hasn't been updated to 
@@ -101,6 +95,6 @@ the controllers are fun to use and the bluetooth connection was relatively stabl
 plagued my desk, and long-term connectivity issues became worse. I've now decided to get rid of this all together, and possibly build my own controller with two LoRA radios. That
 will probably require a custom pcb, which may take me a while to finish (my AP chemistry final is two weeks away, and then the hardest unit in the class!).</p>
 
-<p>Here's another render of the robot from the back:<img src="assets/images/quadruped_pics/fusion_renderings/V1TopBack.png" width=1000 /></p></p>
+<p>Here's another render of the robot from the back:<img src="{{site.baseurl}}/assets/images/quadruped_pics/fusion_renderings/V1TopBack.png" width=1000 /></p></p>
 
 <h6>That's all for now!</h6>

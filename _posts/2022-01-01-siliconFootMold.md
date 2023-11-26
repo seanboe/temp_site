@@ -2,14 +2,8 @@
 layout: post
 current: post
 cover: assets/images/quadruped_pics/feet/caulking_first_try.png
-navigation: True
 title: Silicon Foot Mold
-date: 2022-01-1  10:18:00
-tags: Quadruped
-tag: Quadruped
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Quadruped ]
 ---
 
 

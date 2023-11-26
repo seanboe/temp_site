@@ -16,7 +16,7 @@ post_class: post-template
         
 		<div class="col-md-8">
             <!-- Post Featured Image -->
-			{% if page.image %}<img class="featured-image img-fluid rounded" style="width:auto" src="{{ site.baseurl }}/{{ page.image }}" alt="{{ page.title }}">{% endif %}
+			{% if page.cover %}<img class="featured-image img-fluid rounded" style="width:auto" src="{{ site.baseurl }}/{{ page.cover }}" alt="{{ page.title }}">{% endif %}
 			<!-- End Featured Image -->
 			<div class="mainheading">             
                 
@@ -26,7 +26,7 @@ post_class: post-template
                         {% assign sortedCategories = page.categories | sort %}
                         {% for category in sortedCategories %}
                         <li>
-                         <a href="{{ site.baseurl }}/categories#{{ category | slugify }}" style="text-decoration: none;">{{ category }}</a>
+                         <a href="{{ site.baseurl }}/categories/#{{category | replace: ' ', '-' }}" style="text-decoration: none;">{{ category }}</a>
                         </li>
                         {% endfor %}
                     </ul>
@@ -41,7 +41,7 @@ post_class: post-template
 
           &nbsp;
           &#x2022;
-
+          {% capture source_type %}{{"page"}}{% endcapture %}
           {% include wpm.html %}
 
           <!-- &#x2022;

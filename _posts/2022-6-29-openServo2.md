@@ -3,11 +3,8 @@ layout: post
 current: post
 cover: assets/images/OpenServo/Post2/heroImage.png
 navigation: True
-title: OpenServo V1
-date: 2022-06-29  10:18:00
-class: post-template
-subclass: 'post'
-author: sean
+title: Debugginggg
+categories: [ OpenServo ]
 ---
 
 And so the problems come rolling in...

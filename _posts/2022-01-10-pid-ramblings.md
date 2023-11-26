@@ -2,14 +2,8 @@
 layout: post
 current: post
 cover: assets/images/pidRamblings-hero.png
-navigation: True
 title: PID Ramblings
-date: 2022-01-1  10:18:00
-tags: Quadruped
-tag: Quadruped
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Miscellaneous ]
 ---
 
 Just some random stuff on using PID controllers on my quadrupedal robot. 

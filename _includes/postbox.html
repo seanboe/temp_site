@@ -3,7 +3,7 @@
 
 <div class="card">
     <a href="{{ post.url | absolute_url }}">
-        {% if post.cover %} <img class="rounded mb-4" style="height: 12rem; object-fit: cover;" src="{{ site.baseurl }}/{{ post.cover }}" alt="{{ post.title }}"> {% endif %}
+        {% if post.cover %} <img class="rounded mb-4" style="height: 12rem; object-fit: cover; width: 100%;" src="{{ site.baseurl }}/{{ post.cover }}" alt="{{ post.title }}"> {% endif %}
     </a>
     <div class="card-block">
         <h2 class="card-title h4 serif-font"><a href="{{ post.url | absolute_url }}">{{ post.title }}</a></h2>
@@ -14,6 +14,7 @@
                 &nbsp; &#x2022; &nbsp;
 
                 <span class="reading-time">
+                  {% capture source_type %}{{"post"}}{% endcapture %}
                   {% include wpm.html %}
                 </span>
 

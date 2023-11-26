@@ -2,12 +2,8 @@
 layout: post
 current: post
 cover: assets/images/usbhubcover.png
-navigation: True
 title: Stuff I Learned about USB
-date: 2022-03-13  10:18:00
-class: post-template
-subclass: 'post'
-author: sean
+categories: [ Team Inspiration, PCBs ]
 ---
 
 USB communication is a standard in our daily lives with practically every computer and even microcontroller supporting some form of it. On my robotics team, I was asked to build a printed circuit board with a large, integrated usb hub that supported USB 3.0 and USB 2.0, so I began researching usb specification and ways that I could make this work. Unfortunately, due to the competition that this was meant for being cancelled, I no longer need to build it, so instead, I'm posting this to recap everything I've learned so far in case I forget; hopefully, this will be interesting to you too!
