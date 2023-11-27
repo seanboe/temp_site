@@ -1,9 +1,2 @@
-cd ./_scripts/
-
-for file in *; do 
-  python3 $file
-done
-
-cd ../
-
+python3 _scripts/build_post_sidebar.py
 bundle exec jekyll serve

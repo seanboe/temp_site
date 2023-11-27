@@ -19,8 +19,11 @@ def get_line_level(line):
 for post_file in os.listdir(os.getcwd() + "/_posts/"):
 
   # post_file_string = post_file[post_file.find(next(filter(str.isalpha, post_file))):post_file.find(".")]
+  if post_file == ".DS_Store" or post_file == "_site":
+    continue
 
   with open(f"_posts/{post_file}", "r") as post:
+
     lines = post.readlines()
 
     post_start_index = 0
@@ -53,91 +56,10 @@ for post_file in os.listdir(os.getcwd() + "/_posts/"):
           # Dump if it doesn't follow on the hierarchy
           continue
 
-        headers += depth * "  " + f"- title: {header_title}\n"
-      
-    print(headers)
+        headers += depth * "  " + f"- title: \"{header_title}\"\n"
 
 
     with open(f"_data/post_toc/{post_title}.yaml", "w") as toc:
       toc.write(headers)
 
-
-    #     print(header_title)
-
-    #     if len(all_headers) == 0:
-    #       all_headers.append(header_title)
-    #     elif line_level == depth:
-          
-    #       # Append based on depth
-    #       if depth == 1:
-    #         all_headers.append(header_title)
-    #       elif depth == 2:
-    #         all_headers[-1].append(header_title)
-    #       elif depth == 3:
-    #         all_headers[-1][-1].append(header_title)
-
-    #     elif line_level < depth:
-          
-    #       # Append based on depth
-    #       if depth == 2:
-    #         all_headers.append(header_title)
-    #       elif depth == 3:
-    #         all_headers[-1].append(header_title)
-          
-    #       depth -= 1
-
-    #     elif line_level - 1 == depth:
-
-    #       # Append based on depth
-    #       if depth == 2:
-    #         all_headers.append([header_title])
-    #       elif depth == 3:
-    #         all_headers[-1].append([header_title])
-          
-    #       depth += 1
-    
-    # print(all_headers)
-
-
-
-
-
-    # post.readline()
-    # post.readline()
-    # title_line = post.readline()
-    # title = title_line[title_line.find('"') + 1:title_line.find('"', title_line.find('"') + 1)]
-    # title = title.lower().replace(" ", "-")
-
-    # with open(f"_data/post_toc/{title}.yaml", "w") as toc:
-    #   toc.write("toc:\n")
-
-    #   prev_header_level = 0
-    #   prev_header_exists = False
-    #   within_code = False
-    #   for line in post:
-    #     yaml_output = ""
-    #     header_level = find_letter(line)
-    #     if line[0:2] == "{%" or line[0:3] == "```":
-    #       within_code = not within_code
-    #       if "burning" in title:
-    #         print("in code")
-    #         print(line, within_code)
-
-    #     if within_code:
-    #       continue
-    #     if header_level == 0:
-    #       continue
-
-        
-    #     # The correct way to do this is to refer to the previous header level so that everything is relative;
-    #     # I have not done this to force myself to use the headers in order (you should really be styling the headers)
-    #     # Independently instead of switching to different header vlaues to satisfy what you want) and because I am lazy and dont
-    #     # Want to implement it now. 
-    #     heading = line.strip("#").strip(" ")
-    #     if prev_header_level < header_level and prev_header_level != 0:
-    #       yaml_output += "  " * header_level + f"subsections:\n"
-    #     yaml_output += "  " * header_level + f"- title: { heading }"
-
-    #     prev_header_level = header_level
-
-    #     toc.write(yaml_output)
+print("Finished building sidebars")

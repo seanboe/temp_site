@@ -154,7 +154,7 @@ small, .small {
 /* Sidebar
 ================================================== */
 .sidebar.sticky-top {
-    top:96px;
+    top:130px;
     .dropdown-item {
         opacity:.6;
     }
@@ -164,8 +164,8 @@ small, .small {
 }
 
 @media (min-width: 770px) {
-  .spacefill {
-    padding-top: 300px;
+  .sidebar-spacefill {
+    padding-top: 39vh;
   }
 }
 
@@ -363,6 +363,10 @@ blockquote {
 .featured-image {
     display: block;
     margin-bottom: 2rem;
+    object-fit: cover;
+    width: 100%;
+    height: 30vh;
+    border-radius: 10px;
 }
 
 .full-width {
@@ -392,7 +396,7 @@ blockquote {
   transition: transform 0.3s ease;
 }
 .card:hover {
-  transform: translateY(-5px) 
+  transform: translateY(-5px);
 }
 .card a {
   color: none;
@@ -719,12 +723,12 @@ figure {
   color: var(--primary_text)
 }
 
-a.anchor {
-  display: block;
-  position: relative;
-  top: -250px;
-  visibility: hidden;
-}
+// a.anchor {
+//   display: block;
+//   position: relative;
+//   top: -250px;
+//   visibility: hidden;
+// }
 
 hr {
   border-top: 1px solid var(--primary_text);

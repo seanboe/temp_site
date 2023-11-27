@@ -6,15 +6,15 @@
 
   <div class="pt-2 pl-3 sidebar-border" data-bs-theme="dark">
     {% for heading in site.data.post_toc.[sidebar_file].toc %}
-      {% assign heading_link = heading.title | downcase | replace: " ", "-" | remove: "'" %}
+      {% assign heading_link = heading.title | downcase | replace: " ", "-" | remove: "'" | remove: "/" %}
       <a href="#{{heading_link}}" style="text-decoration: none;"><h6>{{ heading.title }}</h6></a>
       {% if heading.subsections[0] %}
         {% for heading2 in heading.subsections %}
-          {% assign heading2_link = heading2.title | downcase | replace: " ", "-" | remove: "'" %}
+          {% assign heading2_link = heading2.title | downcase | replace: " ", "-" | remove: "'" | remove: "/" %}
           <a href="'#{{heading2_link}}'"><strong class="pl-4">{{ heading2.title }}</strong><br></a>
           {% if heading2.subsections[0] %}
             {% for heading3 in heading2.subsections %}
-              {% assign heading3_link = heading3.title | downcase | replace: " ", "-" | remove: "'" %}
+              {% assign heading3_link = heading3.title | downcase | replace: " ", "-" | remove: "'" | remove: "/" %}
               <a href="#{{heading3_link}}"><i class="pl-5">{{ heading3.title }}</i></a>
               <br>
             {% endfor %}

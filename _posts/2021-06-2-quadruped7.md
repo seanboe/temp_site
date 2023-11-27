@@ -52,10 +52,10 @@ making the board... the motors seemed to be affected whenever two radios were co
 I'm still trying to find the issue. 
 
 All in all, here is the final schematic:
-![schematic](assets/images/schematics/controlBoardV1Beta.png)
+![schematic]({{site.baseurl}}/assets/images/schematics/controlBoardV1Beta.png)
 
 And the layout:
-![layout](assets/images/schematics/layoutV1-1.png)
+![layout]({{site.baseurl}}/assets/images/schematics/layoutV1-1.png)
 <hr/>
 
 I'm really please with this board. It was my first, and despite making many mistakes (see the section below), I learned a lot and it was a lot of fun. Additionally,

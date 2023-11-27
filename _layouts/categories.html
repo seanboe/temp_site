@@ -5,6 +5,31 @@ permalink: "/categories.html"
 ---
 <h1>Tags</h1>
 {% for category in site.categories %}
+{% if category[0] == "Miscellaneous" %}
+{% continue %}
+{% endif %}
+<h2 class="mt-5 mb-4 pb-2 border-bottom" id="{{ category[0] | replace: " ","-" }}"><span class="text-capitalize small font-italic font-weight-bold">{{ category[0] }}</span></h2>
+<div class="row">
+{% assign pages_list = category[1] %}
+{% for post in pages_list %}
+{% if post.title != null %}
+{% if group == null or group == post.group %}
+<div class="col-md-4 mb-5">
+{% include postbox.html %}
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+{% assign pages_list = nil %}
+{% assign group = nil %}
+</div>
+{% endfor %}
+
+<!-- Just for miscellaneous, because I'm lazy-->
+{% for category in site.categories %}
+{% if category[0] != "Miscellaneous" %}
+{% continue %}
+{% endif %}
 <h2 class="mt-5 mb-4 pb-2 border-bottom" id="{{ category[0] | replace: " ","-" }}"><span class="text-capitalize small font-italic font-weight-bold">{{ category[0] }}</span></h2>
 <div class="row">
 {% assign pages_list = category[1] %}

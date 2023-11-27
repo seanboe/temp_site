@@ -16,7 +16,7 @@ post_class: post-template
         
 		<div class="col-md-8">
             <!-- Post Featured Image -->
-			{% if page.cover %}<img class="featured-image img-fluid rounded" style="width:auto" src="{{ site.baseurl }}/{{ page.cover }}" alt="{{ page.title }}">{% endif %}
+			{% if page.cover %}<img class="featured-image" src="{{ site.baseurl }}/{{ page.cover }}" alt="{{ page.title }}">{% endif %}
 			<!-- End Featured Image -->
 			<div class="mainheading">             
                 
@@ -120,7 +120,7 @@ post_class: post-template
 
 		<!-- Sidebar -->
         <div class="col-md-4">
-          <div class="spacefill">&nbsp;</div>
+          <div class="sidebar-spacefill">&nbsp;</div>
             {% include sidebar.html %}
         </div>
         

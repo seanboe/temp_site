@@ -15,7 +15,7 @@ OpenOCD (open on chip debugger) allows you to interface to a variety to debugger
 
 For this post, I'm going to explain how I got this working and and then a system that completely didn't work (so that you don't fall into the same pit that I do).
 
-### OpenOCD using the Particle Debugger
+# OpenOCD using the Particle Debugger
 
 My method of getting this working was by using the [particle debugger](https://docs.particle.io/datasheets/accessories/debugger/) which I had lying around. While particle doesn't make this anymore, it appeared that it worked very similarly to the [ST-link](https://www.mouser.com/ProductDetail/Adafruit/2548?qs=SElPoaY2y5K%252BwHNUAvyTvg%3D%3D&mgh=1&gclid=Cj0KCQiAjc2QBhDgARIsAMc3SqSzy66xUxrKwRnrvJE0uKP9VPn1LcG0QoVwNc76ceQrU3iCMSSetYYaAi5XEALw_wcB), which is very popular and in stock practically everywhere.
 
@@ -193,7 +193,7 @@ in procedure 'ocd_bouncer'
 
 that either times out or decides to do nothing (I hope you can tell how frustrating those problems were for me), then you likely have a wiring issue, where the target can't communicate to the debugger properly. 
 
-### What didn't work
+# What didn't work
 
 Initially, I used the Olimex Arm-usb-ocd-h JTAG debugger with a JTAG-swd adapter from adafruit. Here is the config file I used for testing:
 
@@ -238,7 +238,7 @@ While openocd did run (for a long time I received only failed initilization resp
 
 <hr>
 
-### Problems / updates
+# Problems / updates
 
 After a little bit of testing, I found an odd problem; a reset immediately after programming will cause something (the bootloader, I guess?) to break. The rgb LED on the itsybitsy m0 that I was using for testing would turn red and the led on pin 13 would flash. After shutting everything down, the itsybitsy would fail to turn on and wouldn't show up as an available usb port. Odd? The only "solution" I could find to this was to reprogram the bootloader twice, turn on bootloader protection, shut down openocd, power the device through it's own usb cable, and _then_ disconnect the debugger. When the debugger (which was powering the target at first) was removed, the mcu would then remain on in it's "red" state, but after a reset, everything was back to normal and the device would show up as a serial port again. As for why this works, I have absolutely no idea, but the moral of the story is to not mess around too much. 
 
