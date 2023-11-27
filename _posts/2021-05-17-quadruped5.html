@@ -1,0 +1,94 @@
+---
+layout: post
+current: post
+cover: assets/images/quadruped_pics/fusion_renderings/V1-1Front-crop.png
+navigation: True
+title: Fixing Interpolation
+categories: [ Quadruped ]
+---
+
+<p>My previous method for interpolating the foot position seemed great... but was it?</p>
+
+<b>Hint - <i>It wasn't!</i></b>
+
+<p>Let's take a step back. I while ago, I had an issue with achieving smooth movements when trying to move the foot straight up and down in the z direction:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EegM6h1qaZo" frameborder="0" allowfullscreen></iframe> 
+
+<p>Towards the end, you can really tell that the foot is going forwards and backwards before achieving the final (planned) position, directly under the shoulder. In my <a href="https://seanboe.github.io/blog/quadruped2">previous post</a>,
+I solved this by interpolating the joint from their start position to their final calculated position, but this completely oversteps the problem! When observing the video above, it looks like the issues are spawning from one motor 
+reaching it's final position before the other (due to the difference in distance each needs to turn), which is only half of the problem. This only makes sure that the motors stop at the same point in time, giving the illusion that movement 
+is straight when it really isn't. Take a look at this video, where I implemented the old version of interpolation-smoothing:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wmLtTbvic6k" frameborder="0" allowfullscreen></iframe>
+
+<p>The result is much better than when not using interpolation at all, yet it is still inaccurate. The slow motion part shows the error still; the foot moving forwards and backwards while performing an up-down maneuver.</p>
+
+<p>As I began adding different axis to my code, this problem became worse.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FpEesAt4VCM" frameborder="0" allowfullscreen></iframe>
+
+<p>For the "old interpolation", you can clearly see that the foot is going lower than it should; kind of in a swooping motion. </p>
+
+<p>Anyway, how can this be solved?</p>
+
+<p>Well, it's actually fairly straightforward: record the final position, in millimeters, that the foot needs to be at, then interpolate the position of the foot from the initial to the final position. In the meantime, dynamically calculate the 
+  position of the foot and update the motors accordingly. This guarantees that all the foot positions are planned; if one axis is set to not change, then it won't change but the others will. For the up-down movements, for example, the desired z-distance
+  (from the foot to the shoulder) must change, but the x and y axis should change. This means that only the z axis will be interpolated and it will be the only thing dynamically changing.
+</p>
+
+<p>The new interpolation technique can be seen in the video above. Here's the code:</p>
+
+{% highlight java %}
+void Kinematics::setFootEndpoint(int16_t inputX, int16_t inputY, int16_t inputZ) {
+
+  solveFootPosition(inputX, inputY, inputZ, &motor1.angleDegrees, &motor2.angleDegrees, &motor3.angleDegrees);
+
+  uint16_t motor1AngleDelta = abs(motor1.angleDegrees - motor1.previousDegrees);
+  uint16_t motor2AngleDelta = abs(motor2.angleDegrees - motor2.previousDegrees);
+  uint16_t motor3AngleDelta = abs(motor3.angleDegrees - motor3.previousDegrees);
+  uint16_t demandTime = lrint(MAX_SPEED_INVERSE * max(max(motor1AngleDelta, motor2AngleDelta), motor3AngleDelta));
+
+
+    // determine whether motor angles have been updated i.e. new end angle, and update final positions accordingly
+  if ((motor1.previousDegrees != motor1.angleDegrees) || (motor2.previousDegrees != motor2.angleDegrees) || (motor3.previousDegrees != motor3.angleDegrees)) {
+    motor1.previousDegrees = motor1.angleDegrees;
+    motor2.previousDegrees = motor2.angleDegrees;
+    motor3.previousDegrees = motor3.angleDegrees;
+
+    dynamicX.go(inputX, demandTime, LINEAR, ONCEFORWARD);
+    dynamicY.go(inputY, demandTime, LINEAR, ONCEFORWARD);
+    dynamicZ.go(inputZ, demandTime, LINEAR, ONCEFORWARD);
+  }
+}
+
+void Kinematics::updateDynamicFootPosition() {
+
+  solveFootPosition(dynamicX.update(), dynamicY.update(), dynamicZ.update(), &motor1.dynamicDegrees, &motor2.dynamicDegrees, &motor3.dynamicDegrees);
+  motor1.dynamicMicros = _degreesToMicros(motor1.dynamicDegrees, motor1.calibOffset);
+  motor2.dynamicMicros = _degreesToMicros(motor2.dynamicDegrees, motor2.calibOffset);
+  motor3.dynamicMicros = _degreesToMicros(motor3.dynamicDegrees, motor3.calibOffset);
+}
+{% endhighlight %}
+
+<p>To explain the flow of this code:
+  <ul>
+    <li>
+      First, you must call <code>setFootEndpoint(int16_t inputX, int16_t inputY, int16_t inputZ)</code>, which allows you to specify the final foot position.
+    </li>
+    <li>
+      Second, call <code>updateDynamicFootPosition()</code> every loop. This updates the motor angles according to the interpolated axis lengths.
+    </li>
+  </ul>
+  Simple!
+</p>
+
+<p>Conveniently, this interpolation method also allows you to specify a time for completion, which means that you can verify that all the axis interpolate to their final positions over the same period of time, and thus the motors will also stop 
+  at the same time. This preserves the goal of the old version of interpolation. The time can also be calculated in the same way; since the only speed constraint are the motors, whose activiy are directly changing the angle, you can still use a
+  relationship between angle change and time to determine the total interpolation time. 
+</p>
+
+<hr/>
+
+<p>Problems:</p>
+<p>None, so far! I tested this extensively to make sure it worked well and released it in v1.0 of <a href="https://github.com/seanboe/QuadrupedKinematics">QuadrupedKinematics</a>. If you find any problems, let me know!</p>

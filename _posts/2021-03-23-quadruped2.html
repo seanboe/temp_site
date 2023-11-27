@@ -1,0 +1,116 @@
+---
+layout: post
+current: post
+cover: assets/images/quadruped_pics/update2Cover.jpeg
+title: Adding interpolation!
+categories: [ Quadruped ]
+---
+
+<p>Vertical translation calculations are working well, but I'm still not satisfied.</p>
+
+<p>The main problem is that the motion isn't smooth enough. If you remember from my last post, the positioning of the foot with an input for the shoulder to the foot distance involves the movement
+  of two motors. Most often, the difference between the current angles (where the motor is currently at) and the demand (calculated) angles for each motor are very different, and since they're both
+  moving at the same speed, the motors achieve their final postions at different times. This results in really weird motion; rather than staying directly under the shoulder as planned, the foot 
+  swings around a little bit in an unplanned fashion. 
+</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EegM6h1qaZo" frameborder="0" allowfullscreen></iframe>
+
+<p>As you may be able to see (better in the slow-mo part of the video towards the end), the foot usually moves forwards a little, or backwards a little. Trust me, this is <i>extremely</i> frustrating to see. I had to do 
+something to fix it. </p>
+
+<p>The answer is to interpolate all the motors between the start positions and the end positions over the same amount of time. By interpolating, you can effectively control the speed of the motors
+  since you'd be writing the same positions to them strategically (these motors aren't very "smart" and don't output an encoder position for custom control). This means that you can control the 
+  speed of all the motors to make sure that they all stop at the same time!
+</p>
+
+(Hint - this <b><i>is not</i></b> <a href="https://seanboe.github.io/blog/quadruped5">the solution</a>!)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wmLtTbvic6k" frameborder="0" allowfullscreen></iframe>
+
+<p>The time is determined by finding out the most degrees that a certain motor needs to travel and multiplying it by a constant milliseconds-per-degrees constant (basically the inverse of 
+  maximum speed) that I determined experimentally. By tuning this value, I can control the speed and the accuracy of the interpolation system; if this constant is higher than necessary, the 
+  foot moves with greater precision more slowly, while if it is too low, both motors move at their maximum speed and the interpolation is useless. The small caveat to this is that the overall motion 
+  occurs a bit more slowly. In theory it shouldn't, but since there may be some error in the calculations or the motors may have some error, I've made this constant a little large than necessary.
+</p>
+
+<p>I've taken care of this interpolation stuff with a few functions in the <a href="https://github.com/seanboe/QuadrupedKinematics">kinematics library</a> I'm making. To deal with the actual 
+interpolation part, I'm using <a href="https://github.com/siteswapjuggler/RAMP">this library</a>since it is easy to use, and pointless to make my own anyway. This library also gives you the
+option to use different types of interpolation such as sinusoidal and quadratic curves.</p>
+
+<p>Here's most of the code:</p>
+
+{% highlight cpp linenos %}
+void Kinematics::updateDynamicEndpoint() {
+
+  uint16_t motor1AngleDelta = abs(motor1.angleDegrees - motor1.previousDegrees);
+  uint16_t motor2AngleDelta = abs(motor2.angleDegrees - motor2.previousDegrees);
+  uint16_t motor3AngleDelta = abs(motor3.angleDegrees - motor3.previousDegrees);
+  uint16_t demandTime = lrint(MAX_SPEED_INVERSE * max(max(motor1AngleDelta, motor2AngleDelta), motor3AngleDelta)); 
+
+    // determine whether motor angles have been updated i.e. new end angle, and update final positions accordingly
+  if (motor1.previousDegrees != motor1.angleDegrees) {
+    motor1.previousDegrees = motor1.angleDegrees;
+    dynamicMotor1Angle.go(motor1.angleDegrees, demandTime, LINEAR, ONCEFORWARD);
+  }
+  if (motor2.previousDegrees != motor2.angleDegrees) {
+    motor2.previousDegrees = motor2.angleDegrees;
+    dynamicMotor2Angle.go(motor2.angleDegrees, demandTime, LINEAR, ONCEFORWARD);
+  }
+  if (motor3.previousDegrees != motor3.angleDegrees) {
+    motor3.previousDegrees = motor3.angleDegrees;
+    dynamicMotor3Angle.go(motor3.angleDegrees, demandTime, LINEAR, ONCEFORWARD);
+  }
+};
+
+uint16_t Kinematics::getDyamicAngle(motorID motorID, unitType unit) {
+  
+  // update the dynamic endpoint in case there is a new demand endpoint
+  updateDynamicEndpoint();
+
+  if (motorID == M1) {
+      if (unit == DEGREES)
+        return dynamicMotor1Angle.update();
+      else if (unit == MILLIS)
+        return _degreesToMicros(dynamicMotor1Angle.update(), motor1.calibOffset);
+  }
+  else if (motorID == M2) {
+    if (unit == DEGREES)
+      return dynamicMotor2Angle.update();
+    else if (unit == MILLIS)
+      return _degreesToMicros(dynamicMotor2Angle.update(), motor2.calibOffset);
+  }
+  else if (motorID == M3) {
+    if (unit == DEGREES)
+      return dynamicMotor3Angle.update();
+    else if (unit == MILLIS)
+      return _degreesToMicros(dynamicMotor3Angle.update(), motor3.calibOffset);
+  }
+  return _degreesToMicros(90, 0);       // this should never happen, but if necessary, return 90 degrees (safe value for all motors)
+};
+{% endhighlight %}
+
+<p>Upon a call to <code>getDyamicAngle(motorID motorID, unitType unit)</code>, <code>updateDynamicEndpoint()</code> checks to see if there is a new endpoint after new angles have been calculated.
+If so, it specifies each motor's  interpolation object (inside ramp.h, the interpolation library) the new endpoint and a new time to finish interpolation. Once that's done, 
+<code>getDyamicAngle(motorID motorID, unitType unit)</code> returns an updated position from the interpolation objects depending on the motor requested. If there is no change to the final endpoint,
+then the interpolation continues as normal, and the dynamic motor angle will reach the demand position in the time specified the last time a new endpoint was updated.</p>
+
+<p>I'm really excited about this. The coolest part is graphing the demand position and the dynamic position together because then you can truly see the interpolation in action. </p>
+
+<p>Here I'm giving the shoulder-foot distance as an input from a potentiometer. The blue line is the dynamic motor position, while the red line is the demand.</p>
+<iframe src="https://giphy.com/embed/YBAjMmSioLFrw1H2ru" width="480" height="286" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+<p>Here I've programmed the microcontroller to automatically set a new endpoint every 5 seconds. Unfortunately, the arduino serial plotter wasn't setting the viewing window correctly, but you can still
+  get the idea.
+</p>
+
+<iframe src="https://giphy.com/embed/6TWu1H7fyoRSTrDEjH" width="480" height="286" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+<p>This is super cool! I'm quite happy with the effect the interpolation has on the overall movement. No obvious issues (so far), so I'm going to move on to the next type of movement along 
+  the x-axis. If you're not sure what I mean, wait for my post, It'll be out soon (if school let's me :D)!
+</p>
+<hr/>
+<br>
+
+<p>Updates from my last post's problems:</p>
+<p>I've gotten rid of the PS3/PS4 bluetooth stuff and am now giving manual inputs via my keyboard while I'm designing my own custom controller.</p>
