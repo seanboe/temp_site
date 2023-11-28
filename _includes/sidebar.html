@@ -4,7 +4,7 @@
 
   {% if page.layout == 'post' %}
 
-  <div class="pt-2 pl-3 sidebar-border" data-bs-theme="dark">
+  <div class="pt-2 pl-3 sidebar-border">
     {% for heading in site.data.post_toc.[sidebar_file].toc %}
       {% assign heading_link = heading.title | downcase | replace: " ", "-" | remove: "'" | remove: "/" %}
       <a href="#{{heading_link}}" style="text-decoration: none;"><h6>{{ heading.title }}</h6></a>
