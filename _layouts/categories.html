@@ -3,7 +3,19 @@ title: "Categories"
 layout: default
 permalink: "/categories.html"
 ---
+
+
 <h1>Tags</h1>
+
+<ul class="tags">
+  {% for category in site.categories %}
+  <li>
+    <a href="{{ site.baseurl }}/categories/#{{category[0] | replace: ' ', '-' }}" style="text-decoration: none;">{{ category[0] }}</a>
+  </li>
+  {% endfor %}
+</ul>
+
+
 {% for category in site.categories %}
 {% if category[0] == "Miscellaneous" %}
 {% continue %}
