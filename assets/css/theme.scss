@@ -674,6 +674,11 @@ span.navigation:before {
   border-left: 1px solid var(--bar-accents);
 }
 
+.sidebar-border a {
+  text-decoration: none;
+  text-decoration-color: transparent;
+}
+
 code {
   border-radius: 10px;
 }

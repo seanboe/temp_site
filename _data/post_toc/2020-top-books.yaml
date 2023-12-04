@@ -1,4 +1,5 @@
 toc:
   - title: "Foundation - Prelude to Foundation"
-  - title: "Brave New World"
-  - title: "The Handmaid's Tale"
+    subsections:
+      - title: "Brave New World"
+      - title: "The Handmaid's Tale"

@@ -11,7 +11,7 @@
       {% if heading.subsections[0] %}
         {% for heading2 in heading.subsections %}
           {% assign heading2_link = heading2.title | downcase | replace: " ", "-" | remove: "'" | remove: "/" %}
-          <a href="'#{{heading2_link}}'"><strong class="pl-4">{{ heading2.title }}</strong><br></a>
+          <a href="#{{heading2_link}}"><strong class="pl-4">{{ heading2.title }}</strong><br></a>
           {% if heading2.subsections[0] %}
             {% for heading3 in heading2.subsections %}
               {% assign heading3_link = heading3.title | downcase | replace: " ", "-" | remove: "'" | remove: "/" %}

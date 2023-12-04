@@ -1,1 +1,9 @@
 toc:
+    subsections:
+      - title: "What is AC?"
+        subsections:
+          - title: "The Passives"
+          - title: "Passives in AC"
+          - title: "The importance of impedance"
+          - title: "More applications"
+          - title: "Root Mean Squared"

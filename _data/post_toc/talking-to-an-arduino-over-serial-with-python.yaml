@@ -1,1 +1,7 @@
 toc:
+    subsections:
+      - title: "Advanced Stuff"
+        subsections:
+          - title: "Adding automatic port detection"
+          - title: "Debugging"
+          - title: "Problems, so far:"

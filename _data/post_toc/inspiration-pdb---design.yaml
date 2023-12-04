@@ -1,4 +1,7 @@
 toc:
   - title: "Conceptual Design"
   - title: "KiCAD"
+    subsections:
+      - title: "Power supplies"
+      - title: "Board iterations"
   - title: "Problems / Updates"

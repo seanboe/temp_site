@@ -1,6 +1,10 @@
 toc:
   - title: "Soldering"
   - title: "Errors"
+    subsections:
+      - title: "Voltage sense"
+      - title: "Mosfet Driving"
   - title: "Programming"
-  - title: "Installation"
-  - title: "More problems"
+    subsections:
+      - title: "Installation"
+      - title: "More problems"

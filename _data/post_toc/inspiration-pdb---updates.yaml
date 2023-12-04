@@ -1,5 +1,6 @@
 toc:
-  - title: "Kill Switch"
-  - title: "Comms"
-  - title: "Peripherals"
-  - title: "Problems / Mistakes"
+    subsections:
+      - title: "Kill Switch"
+      - title: "Comms"
+      - title: "Peripherals"
+      - title: "Problems / Mistakes"

@@ -52,11 +52,17 @@ for post_file in os.listdir(os.getcwd() + "/_posts/"):
       elif not within_code:
         header_title = re.findall("<h\d>(.*?)<\/h\d>", html)[0]
 
-        if abs(line_level - depth) > 1:
-          # Dump if it doesn't follow on the hierarchy
-          continue
+        # if abs(2 * line_level - depth) > 1:
+        #   # Dump if it doesn't follow on the hierarchy
+        #   continue
+      
+        if line_level > depth:
+            headers += (depth) * "    " + "subsections:\n"
+            depth += 1
+        elif line_level < depth:
+          depth -= 1
 
-        headers += depth * "  " + f"- title: \"{header_title}\"\n"
+        headers += (depth - 1) * "    " + f"  - title: \"{header_title}\"\n"
 
 
     with open(f"_data/post_toc/{post_title}.yaml", "w") as toc:

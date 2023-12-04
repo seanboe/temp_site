@@ -1,10 +1,12 @@
 toc:
   - title: "Amputations"
-  - title: "The AMI"
-  - title: "My project"
+    subsections:
+      - title: "The AMI"
+      - title: "My project"
   - title: "Design"
-  - title: "Schematic"
-  - title: "Layout"
-  - title: "Fabrication"
-  - title: "Conclusion"
+    subsections:
+      - title: "Schematic"
+      - title: "Layout"
+      - title: "Fabrication"
+      - title: "Conclusion"
   - title: "Mistakes"

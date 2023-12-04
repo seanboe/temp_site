@@ -9,7 +9,7 @@ categories: [ Miscellaneous ]
 
 Let's fuse sensors - simply!
 
-## Why do I need a filter?
+# Why do I need a filter?
 One of the hardest problems to solve in robotics is how to get orientation data accurately. Most IMUs don't return their orientation 
 directly in euler angles. Gyroscopes, for example, actually measure the velocity of a rotation. Additionally, gyroscopes and accelerometer 
 data need to be corrected to compensate for noise or unexpected movement. Here's an overview of things that need to be fixed:
@@ -96,7 +96,7 @@ To make it easy to integrate this filter into your projects, I created an approv
 
 <hr/>
 
-### Problems... so far
+# Problems... so far
 
 I haven't found any! I've done extensive testing on my library and it works quite well so far. If you use my library and find any problems, please submit an 
 issue on the [library's github](https://github.com/seanboe/SimpleFusion). I'll be happy to consider any changes or fixes!

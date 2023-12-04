@@ -1,2 +1,7 @@
 toc:
-  - title: "Conclusion"
+    subsections:
+      - title: "Differential pairs"
+        subsections:
+          - title: "Routing"
+          - title: "Magnets Inducing Noise"
+      - title: "Conclusion"
