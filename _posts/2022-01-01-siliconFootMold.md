@@ -2,7 +2,7 @@
 layout: post
 current: post
 cover: assets/images/quadruped_pics/feet/caulking_first_try.png
-title: Silicon Foot Mold
+title: Silicone Foot Mold
 categories: [ Quadruped ]
 ---
 

@@ -10,8 +10,7 @@ Hi, I'm Sean, a first-year student at MIT! I really like making stuff (especiall
 Some of my coolest [projects]({{site.baseurl}}/categories/): 
 - [OpenServo]({{site.baseurl}}/categories/#OpenServo), a smart DC motor driver
 - A [Quadrupedal Robot]({{site.baseurl}}/categories/#Quadruped)
-- [Biomech Stimulator]({{site.baseurl}}/categories/#Internships), a project for an internship I currently have
-
+- [Biomech Stimulator]({{site.baseurl}}/categories/#Biomech), a project for an internship I currently have
 
 I'm also the steering lead on [MIT Motorsports](https://fsae.mit.edu), a team of super cool people of which I'm priviliged to be apart of.
 
