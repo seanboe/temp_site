@@ -7,4 +7,4 @@ title: Muscle Stimulator Part 2
 categories: [ Biomech PCBs ]
 ---
 
-In
+In the previous post, I explained the general 
