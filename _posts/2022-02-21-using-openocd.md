@@ -61,7 +61,7 @@ Now we need to make the hardware connections. For this, it might be easiest to u
 
 This is what my setup looks like, if it helps:
 
-![setup](https://media.discordapp.net/attachments/881969144814256200/945386778473410600/1B802925-38F4-4A90-A7D7-8A58D920BCE7.jpg?width=614&height=460)
+![setup](https://lh3.googleusercontent.com/pw/AP1GczPb6tb0_MqC64WMatuYQPBgJljuJneh7DAJvl7MVrSLLi3Hf5E_nJDnWIx8NCCG1gg9oTJGtdNqHw7BgvaeBc2HUJU8Ef64iFHEJFJnsPRNhOg6umvXE-UmC57IN_FPS-E0IDWsmfNVNjPffjhZK-2GawGMpF6qgE8TL0VgHaYW1dBgWXbQ0fxFP_8Jr5DlinIJ-IfFc7xAvBSJQed9AiM3vloRke-tEKF9Xdb30Txp7YGIsVtYXka5KDZwe8Be5dHRc_IrJ63-YxeW4bTlTuWg_IIMQwS64dYSJwwy-pqy40pK30eg5vBe2Conl-5ym6Zli8yBtM7dA7GSt_nNSbr0y9J0-tH6TkOnOA3anC54_zV6daPf1wumiIxdXZ5_LJWrkU5RXeMdM2dD1PcgoJpqWL2xGTjEzIbSKtiZXXZSwAZVZtCxvbgSvV_rZpvhW3dWDMxTshhrA94HLu2l5Mr-N1eCzeLUPWxjTk8bsXoN3TYD1bDUhOUcTmrfR2I5BEVnx6LiKNF0WxmbGIXSIVU-_ZF9iMC3V9V31IOPIBvHPmJwjGq6H56Gj7ZS5YZGNmIvmEFys6YBWoC8blSGsaqpTxdy8fSs33GDNdixyy5pfIJ4OjuByOIaTenlB1hzTXz6ftZ9hIze2HpzcAno5RMHYWutU0Uw6iMKNJFFzAaAZLG8W8PBVZm9VpWRuhJ783SbLOpLAiL1FuWMXdWFJnx4wTxfyGteBUiYmR-9E4YXhTIL7x01wW_vZAd15P5wsgCnUdYlGtOt3dpME9Grd-JTghjbmdodklsTh-Ftj333mY64emogBDuZWBC0Dyp6k8TA7oe7b6kz-v6n1uFz08996jODhSMfETUaBPUj_mTd6U-T_N6c17RFpDmNyyK2CWKInTzEikFUs2nrHce6k5RyKC3gR74Dh4_PJWooKBpAxEBFTKmDVR7O52Oe=w464-h348-no?authuser=0)
 
 Then plug in the debugger, navigate to the director with the configuration file and your bootloader, and run `openocd`. You should see this in the terminal:
 
@@ -114,7 +114,7 @@ Info : accepting 'telnet' connection on tcp/4444
 Now you can start typing commands directly to openocd. Through the telnet connection. This is very handy for debugging the debugger (making sure that openocd works) and that your connections are corrent, since you can try lots of stuff out, and, in my case, break one of your boards...
 
 For reference, here is a diagram that describes the overarching connections being made (ignore the Jtag interface): 
-![diagram](https://media.discordapp.net/attachments/881969144814256200/945376924438499348/Screen_Shot_2022-02-21_at_9.50.17_AM.png?width=420&height=460)
+![diagram](https://lh3.googleusercontent.com/pw/AP1GczNUGlbNHTYOfobHqwbktq42CEleDE3yHBEWOjV2soZom3BwRG36FCmnX34rbH2ZTk8UGRabkL4z5pD9v3YbybUo1GbBC2Ir9WvHu4NkIh7XBiG8xEGMWwmITz9SwmTfbKe9nuQxeabAK2YLs3DEbaha76bbTeD_Z3kpgBXm0I2aIQNQi-haN8wOmD4ySO1RaD9awTBszRcQZiv14RGuuOtY5cTen7JB8gnuGmpcqHDVHmx6-KGd7voz4aXmEtOisC9_1kvXjiGE5IarmK2AnAK_2JEyymz_Fj7MpH6QlpyZcXC9KHpYR9lE0JTCfWsBCepWa8hEaZN_1WaPpl32GJcHfTddBdDqzPM92dqqrN_cexJUJgIQZ-1hZ2Qbt4t-foZqKuT-myeGFRgFKmnF6jzY5yMxK47Wdj26TyqGRYoil80gf34C3ZO8piTLS5YsE1cJpjAytgC3NQJz7mUMjP4BSeS8BXUlqN9dJMi_glGa_VxxYffxtmxy3dgaPjkXCKfPevtYlojZsdT1RgUIWY7G2hUQFSLVaQWXAYXVup8_AQZjal7s7udU-Z98vfnz7iRM-UQhLVfzKm6wA3JZVgs42W4gmSIp48KmzXDot2yIryAz5Y2squi8uA-O0bFb0s2oA0zPWkv3-yWeYF2_gfsj6IZVIFlsdPSo474PN9tZigLHF-usEmUAaPE118pe1ajBpothaHsw8qyqNRXGzcHqs1hY1SbeZISIbhZOJ9IHFpLMo2Wzr6AvyUBPw0L_bRFjxy6LCdWR1-YpsgrieEe0RUZBpKMGaMx-31ENpEUuysUo3vMr4sKELJo8uY4s3k1uyK1Sws4aqBDfW757KlbF-mpAmbOT6TOoc9YkMP-gWlw4owXAUhsw1lmYvSyGIo8zD5GffscQrlWVJeQzWZOmerqszthtnP_SmmFXaYqH0n2pL0vbkWn_TSj4lw=w915-h1003-s-no?authuser=0)
 
 There is a vast directory of commands that openocd supports; they have a [general directory](https://openocd.org/doc/html/General-Commands.html) as well as a [processory specific directory](https://openocd.org/doc/html/Flash-Commands.html), but here is a short list of commands that I found useful.
 

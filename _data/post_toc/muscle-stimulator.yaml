@@ -1,0 +1,9 @@
+toc:
+  - title: "Stimulator Design"
+    subsections:
+      - title: "Research:"
+      - title: "Designing"
+        subsections:
+          - title: "Simulation"
+          - title: "Negative source"
+      - title: "Filtering"
