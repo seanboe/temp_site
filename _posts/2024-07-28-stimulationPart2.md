@@ -73,7 +73,7 @@ Here's the 40&deg;C steady-state, measured using an overpriced FLIR camera the l
 
 The next step was to make sure that the risetime of the system was good enough to actually match the timing requirements of the system. I'm ignoring the rise time of the flyback charge because that doesn't change during stimulation, so as I mentioned in the previous post, this was just about tuning the feedback resistor / capacitors in the driver circuit: 
 
-__Insert Picture__
+![Driver](https://github.com/seanboe/temp_site/blob/master/assets/images/stimulator/post1/finalDriver.png?raw=true)
 
 Here's what the response looked like (voltage over the load): 
 
