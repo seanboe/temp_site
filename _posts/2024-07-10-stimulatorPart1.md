@@ -4,7 +4,7 @@ current: post
 cover: assets/images/stimulationHBridge.png
 navigation: True
 title: Muscle Stimulator Part 1
-categories: [ Biomech ]
+categories: [ Biomech, PCBs ]
 ---
 
 This summer, my main goal is figuring out how to make a mobile muscle stimulator with "blanking" capabilities. Here's roughly how I arrived at this project:

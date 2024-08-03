@@ -4,7 +4,7 @@ current: post
 cover: assets/images/stimulationArmStepResponse.png
 navigation: True
 title: Muscle Stimulator Part 2
-categories: [ Biomech PCBs ]
+categories: [ Biomech, PCBs ]
 ---
 
 After nearly three weeks of waiting (digikey parts came in super late due to a lab financial mixup) everything finally came in. I spent about a day soldering everything with a new metcal soldering iron I bought on eBay and tested it out on the weekend, starting with the flyback converter. I was concerned that this wouldn't work since I designed it pretty hastily and bought a few insanely cheap &#xb1;200V [flyback](https://www.amazon.com/DIANN-Converter-Adjustable-Capacitor-Charging/dp/B0BWN4XNHJ/ref=sr_1_13?crid=2QEGKWMWNX0NG&dib=eyJ2IjoiMSJ9.xu_q7KxCvvL10LmSeyfQLwipaKkC6QKCP6iw3p_LtDvbPyMB84eHRwFbLczu5F9LLrwciCSwoIMZNkUKXF90IfAoXNJB5KJFtahgsZ2thJHLZWNQQWySXb4ZEMTvFyeDGsFK1e6UygJCq9e09Juif5TQbeuNV_8uZK9s0A7UlMd-mFI3xQ3M7VcFo7OOCBTvC5ED0unxU9hviAwz2LB9Kj32u_WHyuo2Cv32Y3rgEME.zhGoewcaxu1DgULXFg4tIhxyOF59cxjqIeHDVmAa7dY&dib_tag=se&keywords=396v+flyback+converter+module+yellow&qid=1722696343&sprefix=396v+flyback+converter+module+yellow%2Caps%2C148&sr=8-13) converters on amazon. Seeing something that cheap and "sus" charge to 350V is pretty crazy: 
