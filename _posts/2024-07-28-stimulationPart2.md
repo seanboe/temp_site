@@ -14,6 +14,8 @@ After nearly three weeks of waiting (digikey parts came in super late due to a l
 Have I mentioned that [flyback converters](https://en.wikipedia.org/wiki/Flyback_converter) are really cool? They're inherently isolated (one of the reasons I chose them for this, since IEC 60601 mandates this) so providing feedback to the controller can be tricky. Most chips use optocouplers, but the [LT8304-1](https://www.analog.com/en/products/lt8304.html#part-details) samples the primary-side coil back-EMF. Pretty cool.
 
 # Debugging
+
+
 ## Flyback
 
 For reference, here's the schematic for my flyback (almost a direct copy of one of the application examples):

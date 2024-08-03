@@ -1,3 +1,10 @@
 toc:
+  - title: "Debugging"
     subsections:
+      - title: "Flyback"
+      - title: "Overcurrent Latch"
       - title: "Driver"
+  - title: "Testing"
+    subsections:
+      - title: "Transients"
+      - title: "Stimulation"
