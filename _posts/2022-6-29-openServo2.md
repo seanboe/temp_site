@@ -130,7 +130,7 @@ Additionally, this plan allows me to control the motor's velocity _and_ torque d
 This new idea will require some changes to the existing board, namely the addition of a boost or buck converter to control the applied voltage on the motor. I hope to build my own circuit for this since they are fairly simple and don't require too many components; here is a sample schematic for a boost converter, which I'm leaning towards using:
 
 
-![boost converter](https://media.discordapp.net/attachments/881969144814256200/992086018444492920/Screen_Shot_2022-06-30_at_8.14.47_AM.png?width=2004&height=937)
+![boost converter](https://github.com/seanboe/temp_site/blob/master/assets/images/OpenServo/Post2/boostconverter.png?raw=true)
 
 Hopefully this will work! Currently, my only fear is that there won't be enough space on the PCB for this to be integrated - maybe I'll end up using an IC if it's compact enough.
 
