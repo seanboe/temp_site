@@ -90,18 +90,16 @@ Since inductors and capacitors have reactance (which is frequency dependent, as 
 
 For a low AC frequency, the reactance of the capacitor is very high (since capacitive reactance is inversely proportional to frequency), which means that the ratio of the capacitive reactance to the resistance is very large (relatively speaking). Thus:
 
-<html>
-<center>
+<br> 
 
-\(\frac{X_{L}}{R} > 1\)
+$ \frac{X_{L}}{R} > 1 $
 
 <br>
 <br>
 
-\(\Delta V_{C} = \Delta V_{out} > \Delta V_{R}\)
+$ \Delta V_{C} = \Delta V_{out} > \Delta V_{R} $
 
-</center>
-</html>
+<br>
 
 On the other hand, with high frequency, the voltage across the capacitor will be less than the capacitor across the resistor. In essence, it acts as a variable voltage divider dependent on frequency, but also has a really interesting relationship. High frequencies are atenuated very strongly whereas low frequencies aren't:
 

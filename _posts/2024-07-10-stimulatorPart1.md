@@ -21,6 +21,8 @@ That's basically the gist. The goal is to design a small multichannel (I'm curre
 
 # Stimulator Design
 
+I'm trying to make a Functional Electric Stimulator (FES). If you've heard of a TENS (transcutaneous electrical nerve stimulation) machine, this is basically the same thing, except designed for muscle contraction. That means it can stimulate at higher currents, and usually, with more precision than commercial TENS devices. There are definitely TENS devices that can contract your muscles but those are kinda the border of the two. Mine is going to be configurable though (and have some more safety features...). 
+
 This is what the stimulation waveform is supposed to look like: 
 
 <figure style="text-align: center">

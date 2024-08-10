@@ -52,11 +52,9 @@ Although my previous boards have looked worse, it is still slightly disheartenin
 
 Another thing to consider when designing the board was making sure that the differential impedance matched the USB 2 and 3 specifications. Both require a differential impedance of 90 Ohms throughout the entire line, from device to peripheral, (be careful since USB 3.1 has a range of possible differential impedances), which is the sum of each singular impedance. Essentially:
 
-<center>
 
-\( Z_{diff} = 2 * Z_{odd} \)
+$ Z_{diff} = 2 * Z_{odd} $
 
-</center>
 
 Actually, all the necessary equations can be summed up by this image:
 
