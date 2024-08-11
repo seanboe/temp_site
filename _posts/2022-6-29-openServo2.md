@@ -93,7 +93,7 @@ The PWM signal that is sent by the processor is amplified by an H-Bridge circuit
 
 By turning on and off mosfets on opposite sides, you can cause the motor to turn different ways. There are more configurations that are shown in the datasheet of the TB67H450.
 
-![more](https://media.discordapp.net/attachments/920561717841371226/991915731006521384/Screen_Shot_2022-06-29_at_8.58.53_PM.png?width=475&height=569)
+![more](https://github.com/seanboe/temp_site/blob/master/assets/images/OpenServo/Post2/hbridge.png?raw=true)
 
 It's really simple, but still really cool!
 

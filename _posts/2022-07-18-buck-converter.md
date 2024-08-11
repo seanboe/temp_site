@@ -11,12 +11,12 @@ Yesterday I built a variable buck converter for fun. It allows you to vary an ou
 
 Here's the schematic:
 
-![schematic](https://media.discordapp.net/attachments/881969144814256200/998654415525392517/Screen_Shot_2022-07-18_at_11.16.01_AM.png?width=1988&height=1138)
+![schematic](https://github.com/seanboe/temp_site/blob/master/assets/images/buckconverter/buckconverter.png?raw=true)
 
 
 ... and a picture of my setup:
 
-![setup](https://media.discordapp.net/attachments/881969144814256200/998666356138446918/Screen_Shot_2022-07-18_at_12.03.28_PM.png)
+![setup](https://github.com/seanboe/temp_site/blob/master/assets/images/buckconverter/buckcovnertersetup.png?raw=true)
 
 In the picture, the transistor is on the left and the mosfet is on the right. I used small smd components (that are soldered to breakout boards) since I only need this for low current (< 1A) solutions and I want to eventually put this on a pcb. 
 
@@ -39,7 +39,7 @@ Someone commented on my youtube video with a question about using a transistor a
 
 This is the schematic you would need:
 
-![converter](https://media.discordapp.net/attachments/881969144814256200/1000517832540430377/Screen_Shot_2022-07-23_at_2.40.32_PM.png?width=1080&height=330)
+![converter](https://github.com/seanboe/temp_site/blob/master/assets/images/buckconverter/proposedregulator.png?raw=true)
 
 This is a half-wave rectifier (which... rectifies AC voltage by taking only half of the wave) but with the mains voltage (in this case, 85V) as a PWM signal. The way that this works is that the transformer acts like the inductor in a buck converter circuit but has it's own step down depending on the output coil - input coil ratio. This means that the output voltage is dependent on the duty cycle of the switching (which would be done by the speed controller) and the transformer gain. 
 
