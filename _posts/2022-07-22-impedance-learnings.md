@@ -22,11 +22,11 @@ __Resistors__ resist current flow usually with a slightly insulating medium. Sin
 
 __Capacitors__ store electrical energy in the form of an electric field between two parallel plates (which is actually a very thin, flat coil of conductive wire seperated by a dielectric in most cases). Since current cannot literally flow through a capacitor (current flowing through a capacitor is called _displacement current_ while current literally flowing through a conductor is called _conduction current_), capacitors are considered analogous to potential energy in mechanical systems. Thus, when a potential difference is applied across a capacitor, it takes time to "charge up". In the case of DC systems, this is rather trivial, however in AC circuits, capacitors are rapidly charged and discharged, and thus their response becomes important to the average signal. 
 
-![capacitor](https://media.discordapp.net/attachments/881969144814256200/1000130378679472258/rc-rc2.gif)
+![capacitor](https://github.com/seanboe/temp_site/blob/master/assets/images/summerlearnings/risetimes.gif?raw=true)
 
 __Inductors__ store energy in the form of a magentic field in a coil. It works on the principle of self inductance, which is an example of Lenz's law. Whenever current flowing through an inductor changes, another current will be induced by the magnetic field to oppose the change. In other words, inductors are resistant to changes in current, not electric potential, like capacitors. This makes the response of inductors to varying currents almost the opposite of capacitors. Also, since the energy stored in inductors _is flowing literally_, inductors are analogous to kinetic energy in mechanical systems. 
 
-![inductor](https://media.discordapp.net/attachments/881969144814256200/1000133149285683231/unknown.png)
+![inductor](https://github.com/seanboe/temp_site/blob/master/assets/images/summerlearnings/risetimesAgain.png?raw=true)
 
 ### Passives in AC
 
@@ -38,45 +38,35 @@ Things get a little more tricky with inductors and capacitors, however. Although
 
 Let's look at inductors first. Assuming that the AC input is sinusoidal, instantaneous voltage can be quatified as such:
 
-<html>
-<center>
 
-\(\Delta v = \Delta {V}_{max}\sin(wt)\)
+$ \Delta v = \Delta {V}_{max}\sin(wt) $
 
 <br>
 
-<p> Assuming that there's only an inductor in our AC circuit, the voltage on the inductor equals the AC voltage:</p>
+Assuming that there's only an inductor in our AC circuit, the voltage on the inductor equals the AC voltage:
 
-\(L\frac{\mathrm{d}i}{\mathrm{d}t} = \Delta {V}_{max}\sin(wt)\)
+$ L\frac{\mathrm{d}i}{\mathrm{d}t} = \Delta {V}_{max}\sin(wt) $
 
-<p>Solve for i (instantaneous current)</p>
+Solve for i (instantaneous current)
 
-\(i_{L} = \frac{\Delta V_{max} \sin(wt - \frac{\pi}{2})}{wL}\)
+$ i_{L} = \frac{\Delta V_{max} \sin(wt - \frac{\pi}{2})}{wL} $
 
-<p>This expression becomes analogous to Ohm's law, where resistance <i>R</i> equals <i>Lw</i>. This is known as <i>inductive reactance</i></p>
+This expression becomes analogous to Ohm's law, where resistance <i>R</i> equals <i>Lw</i>. This is known as _inductive reactance_
 
-\(X_{L} = wL\)
-
-</center>
-</html>
+$ X_{L} = wL $
 
 Concisely put, inductive reactance is resistance of an inductor for an AC system. The important differentiator between _resistance_ and _reactance_ is that reactance is _frequency dependent_ - the AC frequency changes the "AC resistance" (reactance) of the inductor. Note that the reactance of an inductor is proportional to the frequency of the voltage applied to it.
 
 For capacitors, there is an inversely proportional relationship between reactance and AC frequency (I'll save you from the derivation):
 
-<html>
-<center>
+$ X_{C} = \frac{1}{wC} $
 
-\(X_{C} = \frac{1}{wC}\)
-
-</center>
-</html>
 
 Thus, it can be seen that the reaction from capacitors and inductors in AC circuits is opposite. This makes sense when analyzing a single AC pulse. When the voltage increases on the pulse, the voltage across an inductor will immediately express the applied voltage (as a result of the reactance), but the current will slowly increase (also a result of the reactance). Meanwhile, a capacitor will take a while to express the applied voltage, but maximum current will flow through it immediately. 
 
 Altogether, the sum of the resistance and the reactance of a circuit is called _impedance_. Doesn't that word sound cool?
 
-![impedance](https://media.discordapp.net/attachments/881969144814256200/1000162236809085011/Screen_Shot_2022-07-22_at_3.07.33_PM.png)
+![impedance](https://github.com/seanboe/temp_site/blob/master/assets/images/summerlearnings/impedance.png?raw=true)
 
 ### The importance of impedance
 
@@ -86,7 +76,7 @@ Although there are many more reasons to care about impedance, impedance matching
 
 Since inductors and capacitors have reactance (which is frequency dependent, as I already pointed out) they can be useful for doing passive AC circuit / noise analysis. This is the main application of filters. Take this system, for example:
 
-![low pass filter](https://media.discordapp.net/attachments/881969144814256200/1000160774959927307/fil5.gif)
+![low pass filter](https://github.com/seanboe/temp_site/blob/master/assets/images/summerlearnings/RCcircuits.gif?raw=true)
 
 For a low AC frequency, the reactance of the capacitor is very high (since capacitive reactance is inversely proportional to frequency), which means that the ratio of the capacitive reactance to the resistance is very large (relatively speaking). Thus:
 
@@ -103,7 +93,7 @@ $ \Delta V_{C} = \Delta V_{out} > \Delta V_{R} $
 
 On the other hand, with high frequency, the voltage across the capacitor will be less than the capacitor across the resistor. In essence, it acts as a variable voltage divider dependent on frequency, but also has a really interesting relationship. High frequencies are atenuated very strongly whereas low frequencies aren't:
 
-![low pass filter graph](https://media.discordapp.net/attachments/881969144814256200/1000164490496708628/unknown.png)
+![low pass filter graph](https://github.com/seanboe/temp_site/blob/master/assets/images/summerlearnings/lowpassfiltergraph.png?raw=true)
 
 This is called a low pass filter!
 
@@ -128,12 +118,6 @@ For AC, the first three have some problems:
 
 This is where RMS voltage comes in. It is the AC voltage squared, taken the average of, and then square rooted - basically, the average of the absolute value of the AC voltage sinewave. RMS voltage is the AC voltage applied to a resistor to result in the same energy losses as a DC system with the same resistor. Since an AC system with amplitudes equal to the DC voltage source of another system will not always be at its peak, it makes sense that RMS voltage is always greater than DC voltage for resistor power consumption to be equal. Specifically:
 
-<html>
-<center>
-
-\(\Delta V_{RMS} = \frac{V_{DC}}{\sqrt{2}}\)
-
-</center>
-</html>
+$ \Delta V_{RMS} = \frac{V_{DC}}{\sqrt{2}} $
 
 Ok, that's all for now! Later I'll also post on what I've learned on resonance and damped oscillations in circuits.
