@@ -10,13 +10,13 @@ USB communication is a standard in our daily lives with practically every comput
 
 The first thing I did was choose a usb hub chip that supported more than 6 ports. I ended up using the [USB5537](https://www.digikey.com/en/products/detail/microchip-technology/USB5537-AKZE/3873213), which supports 4 USB 3.0 ports and 3 USB 2.0 ports and has integrated termination resistors (which is really nice). Although the chip is no longer manufactured, the [newer version](https://www.digikey.com/en/products/detail/microchip-technology/USB5537-AKZE/3873213) supports many features that were unnecessary for our use (like USB 3.1 instead of 3.0 and microchip's PortSwap functionality), and since we're manufacturing the hub in small quantities (less than 5 probably), this didn't matter. 
 
-![strapping options](https://media.discordapp.net/attachments/881969144814256200/958728254846545930/Screen_Shot_2022-03-30_at_7.03.41_AM.png?width=1010&height=1137)
+![strapping options](https://github.com/seanboe/temp_site/blob/master/assets/images/usbhub/usbhubController.png?raw=true)
 
 After reading the 72-page datasheet, I condensed the information into a [4 page google document](https://docs.google.com/document/d/1odN4gN_-jIQHQlAnRAWSDu5GT4It5h0y8beZlxaTd3k/edit). One of the great features of this chips is that it supports strapping options on the overcurrent sense and power port control pins that allows you to select whether you want each port to have overcurrent sense, port swapping, or battery powering enabled. The strapping options are a hardware enable / disable, but the chip will also read the state of each pin on startup and enable / disable functionality itself as well. This replaces the need for an external SPI ROM chip or an SMBus (which is similar to I2C) peripheral.
 
 Then I spent time making a schematic for the board:
 
-![schematic](https://media.discordapp.net/attachments/881969144814256200/958730796699627530/Screen_Shot_2022-03-30_at_7.13.48_AM.png?width=788&height=1137)
+![schematic](https://github.com/seanboe/temp_site/blob/master/assets/images/usbhub/usbcontroller.png?raw=true)
 
 ### Differential pairs
 
@@ -40,13 +40,13 @@ For its ability to withstand noise, differential pairs are very useful; they are
 
 USB 2.0 uses only one differential pair, but USB 3.0 uses 3 differential pairs; 1 pair is a preserved USB 2.0 line (unlike USB 1 to USB 2, the older generation line has a hardware connection from the peripheral to the primary device) and the other pairs are receive and transmit lines for USB 3.0. This creates a slightly frustrating routing issue, since the the seven-port usb hub would have 15 differential pairs to route with required impedance matching. Using a 2 layer board with one layer being a full ground pour, this becomes slightly difficult. I considered switching to a 4-layer stackup that looked like this:
 
-![4 layer](https://media.discordapp.net/attachments/881969144814256200/958729177505337424/unknown.png)
+![4 layer](https://github.com/seanboe/temp_site/blob/master/assets/images/usbhub/4layerboard.png?raw=true)
 
 but that would be almost double the cost. Since I haven't finished the board yet and don't need to anymore, I'm not sure if I would've been successful in only using 2 layers.
 
 This was my ratsnest prior to starting anything:
 
-![ratsnest](https://media.discordapp.net/attachments/881969144814256200/958729802834128916/unknown.png)
+![ratsnest](https://github.com/seanboe/temp_site/blob/master/assets/images/usbhub/ratsnest.png?raw=true)
 
 Although my previous boards have looked worse, it is still slightly disheartening when there are so many lines that you struggle to make them out. 
 
@@ -58,11 +58,11 @@ $ Z_{diff} = 2 * Z_{odd} $
 
 Actually, all the necessary equations can be summed up by this image:
 
-![impedance](https://media.discordapp.net/attachments/881969144814256200/958739370540671046/unknown.png)
+![impedance](https://github.com/seanboe/temp_site/blob/master/assets/images/usbhub/diffImpedance.png?raw=true)
 
 Since USB 2.0 and USB 3.0 require Z<sub>diff</sub> of 90 Ohms, each odd impedance must be 45 ohms. Using an impedance calculator (kicad has one), finding the correct trace width and pair spacing is incredibly easy:
 
-![kicad calculator](https://media.discordapp.net/attachments/881969144814256200/958740185548484638/Screen_Shot_2022-03-30_at_7.51.06_AM.png)
+![kicad calculator](https://github.com/seanboe/temp_site/blob/master/assets/images/usbhub/diffImpedanceCalculator.png?raw=true)
 
 Although the odd impedance isn't exactly 45 ohms, the error is under the 10% usb tolerance, so it's alright. 
 
@@ -83,15 +83,11 @@ That wraps up the part specifically about USB. Since the project would've also r
 
 Current is defined as the change in the magnitude of a charge at a certain place with respect to time. This means that anywhere that charges are moving, there is a current created, and this current will create a surrounding magnetic field on a plane perpendicular to that upon which the charges are moving. In the case of a wire, this means directly up and around:
 
-![wire magnetic field](https://media.discordapp.net/attachments/881969144814256200/958745328977346681/unknown.png)
+![wire magnetic field](https://github.com/seanboe/temp_site/blob/master/assets/images/usbhub/magnetics.png?raw=true)
 
 with a magnitude of:
 
-<center>
-
-\( B = \frac{u_{0}I}{2 \pi r} \)
-
-</center>
+$ B = \frac{u_{0}I}{2 \pi r} $
 
 where _r_ is the distance from a wire.
 
