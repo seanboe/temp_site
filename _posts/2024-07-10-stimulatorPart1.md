@@ -38,7 +38,7 @@ For us, the stimulation parameters are roughly:
 - D: 200uS
 - W: 100uS
 - The unlabled positive time period: 2mS
-- _f_: ~500Hz. 
+- _f_: ~50Hz. 
 
 Not too bad. 
 
