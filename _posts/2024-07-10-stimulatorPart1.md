@@ -4,7 +4,7 @@ current: post
 cover: assets/images/stimulationHBridge.png
 navigation: True
 title: Muscle Stimulator Part 1
-categories: [ Biomech, PCBs ]
+categories: [ Biomech, PCBs]
 ---
 
 _Forword: I need to thank my lab mentor, [Chris Shallal](https://www.linkedin.com/in/christopher-shallal-4a5634150/), for helping me out on this project, especially on the human-bio side of things. He's the reason I didn't accidentally electrocute myself :D_
