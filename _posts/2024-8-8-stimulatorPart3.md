@@ -7,9 +7,9 @@ title: Muscle Stimulator Part 3
 categories: [ Biomech, PCBs ]
 ---
 
-_Forword: I need to thank my lab mentor, [Chris Shallal](https://www.linkedin.com/in/christopher-shallal-4a5634150/), for helping me out on this project, especially on the human-bio side of things. He's the reason I didn't accidentally electrocute myself :D_
-
 A week after sending version 2 of the driver board out (see my previous post) everything came in. I soldered it all up, and I was once again impressed by how close the 3d model in kicad got to reality:
+
+>Forword: I need to thank my lab mentor, [Chris Shallal](https://www.linkedin.com/in/christopher-shallal-4a5634150/), for helping me out on this project, especially on the human-bio side of things. He's the reason I didn't accidentally electrocute myself :D
 
 The 3d model:
 ![DriverV2 model](https://github.com/seanboe/temp_site/blob/master/assets/images/stimulator/post2/newDriverCad.png?raw=true)

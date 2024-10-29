@@ -7,9 +7,9 @@ title: Muscle Stimulator Part 1
 categories: [ Biomech, PCBs]
 ---
 
-_Forword: I need to thank my lab mentor, [Chris Shallal](https://www.linkedin.com/in/christopher-shallal-4a5634150/), for helping me out on this project, especially on the human-bio side of things. He's the reason I didn't accidentally electrocute myself :D_
-
 This summer, my main goal is figuring out how to make a mobile muscle stimulator with "blanking" capabilities. Here's roughly how I arrived at this project:
+
+>Forword: I need to thank my lab mentor, [Chris Shallal](https://www.linkedin.com/in/christopher-shallal-4a5634150/), for helping me out on this project, especially on the human-bio side of things. He's the reason I didn't accidentally electrocute myself :D
 
 1. Our lab is inventing [super cool surgeries](https://www.media.mit.edu/publications/mechanoneural-interfaces-for-bionic-integration/) that allow us to provide feedback to amputees via controlled muscle contractions within their limb.
 2. A lot of research has gone into neural prosthesis control, which uses electromyography (EMG). Those control schemes are based on measuring a the natural voltage across your muscle during contraction. Won't stimulation mess that up, since you're basically injecting charge? (_Answer: Yes_)
