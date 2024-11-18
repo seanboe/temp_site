@@ -5,6 +5,7 @@ cover: assets/images/stimulationArmStepResponse.png
 navigation: True
 title: Muscle Stimulator Part 2
 categories: [ Biomech, PCBs ]
+featured: True
 ---
 
 After nearly three weeks of waiting (digikey parts came in super late due to a lab financial mixup) everything finally came in. 
