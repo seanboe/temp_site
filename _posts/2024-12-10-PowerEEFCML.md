@@ -80,8 +80,8 @@ _Step 5: Select the feedback resistor:_ This is specific to the chip, so using t
 
 $$R_{fb}=\frac{R_{ref}*N_{PS}*(V_{out}+V_{f})}{V_{ref}}=\frac{10k\Omega*10.8}{1}\approx 100k\Omega$$
 
-![flyback schematic](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/flyback.png)
-![flyback working](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/flybackworking.png)
+![flyback schematic](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/flyback.png?raw=true)
+![flyback working](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/flybackworking.png?raw=true)
 
 Since the input voltage is relatively low compared to the maximum switch pin voltage, I opted to use a DZ clamp (set to $60V$; $V_{SW(max)}=65V$) in parallel with an RC snubber instead of the RCD clamp taught in class. This was done following the procedure given in the [LT8302 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/LT8302-8302-3.pdf) after I received the PCB:
 
@@ -93,7 +93,7 @@ $$L_{lk}=\frac{t_{orig}^2}{C_{par}*4\pi^2}$$
 4. item Calculate the snubber resistance to critically damp the parasitic LC circuit: $R = \sqrt{ \frac{L}{C} }$
 
 The effectiveness of the clamp: 
-![flyback clamp](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/flybackclamp.png)
+![flyback clamp](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/flybackclamp.png?raw=true)
 
 # FCML Design
 
@@ -108,16 +108,16 @@ The \textit{flying capacitor} multilevel converter establishes known node voltag
 Although the effects of higher $f_{sw}$ and multiple levels on THD should be intuitive, proving it analytically is \href{https://ieeexplore.ieee.org/document/5311996}{involved}. I opted to use numerical methods\footnote{Pulse-width modulation waveforms were generated given an input (target) sinewave and a switching frequency, and the DFT was taken to examine their frequency content. An output filter on the converter model was omitted to make the data more clear at the expense of practical THD modeling.} to show the benefit of multiple levels and switching frequency instead. Figure \ref{fig:fcvslevels} clearly demonstrates the benefits of increasing switching frequency and output levels, with both reducing total harmonic distortion, as expected\footnote{Some $f_{s}$ omitted for clarity; an output filter wasn't included in this analysis, resulting in unrealistic aliasing and THD approximations at certain harmonics.}. 
 
 $f_{s}=50Hz$ Demonstration of multilevel PWM model driving RL Low-Pass:
-![PWM Demo](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/PWMDemo.png)
+![PWM Demo](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/PWMDemo.png?raw=true)
 
 Effect of $n$ levels and $f_{sw}$ on the THD of the output
-![THD comparison](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/thd_fc_vs_levels.png)
+![THD comparison](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/thd_fc_vs_levels.png?raw=true)
 
 ## Design
 
 Although my FCML is designed for a maximum working voltage of $18V$ - orders of magnitude lower in voltage than they are typically used for - it mimics the topology of industry designs in using isolated gate drive stages and bias supplies for each mosfet in the extended totem.
 
-![flyback totem](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/fcml_totem.png)
+![flyback totem](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/fcml_totem.png?raw=true)
 
 Since I chose to make a three-level inverter (the simplest type, since only one additional level at $\frac{V_{Batt}}{2}$is injected), the switch commutation order is trivial. Given the "location" of the flying capacitor(s), there are two clear constraints:
 
@@ -149,7 +149,7 @@ The isolated gate drivers I'm using are the [UCC23511B](https://www.ti.com/lit/d
 
 I began by testing the converter at very low frequency - around 150Hz - with a $1k\Omega$ load. To test the similarity of commutation states 2 and 4 (which should be roughly the same voltage, except that one state charges $C_{flying}$ while the other discharges it). I placed the commutation states successively, leading to the following output voltage waveform ($f_{sw}=150Hz$, $Z_{load}=1k\Omega$):
 
-![fcml simple working](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/flybackworking.png)
+![fcml simple working](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/flybackworking.png?raw=true)
 
 Which looks roughly as expected! The slight deviation in the voltage between state 2 ($A; \overline{B}$: $V_{out}=\frac{V_{Batt}}{2}$; $V_{flying}\uparrow$) and 4 ($\overline{A}; B$: $V_{out}=\frac{V_{Batt}}{2}$; $V_{flying}\downarrow$) suggests that switch 3 isn't fully saturated, and current is flowing through the body diode instead (the forward drop is $\approx1.2V$, which agrees with the oscilloscope reading). This would be inefficient for a higher power system, but is permissible for my application. The transient during the switching between the two states is because all the switches need to be flipped, so there is a (very short) dead time when nothing is on. 
 
@@ -158,10 +158,10 @@ Decreasing the switching frequency and load resistance allowed me to clearly dem
 Using the aforementioned 90-degree offset PWM scheme, I tested proper converter operation at $142kHz$, with output. Note that an output filter was omitted here for clarity of testing. The charging coil is an inductive load, so transients should mostly vanish after complete assembly.
 
 FCML at $f_{sw}=10Hz$, $Z_{load}=1k\Omega$; charging discharging of $C_{flying}$ is clear:
-![Discharging](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/flybackworking.png)
+![Discharging](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/flybackworking.png?raw=true)
 
 FCML at $f_{sw}=142kHz$, $Z_{load}=1k\Omega$:
-![150khz](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/150khz.png)
+![150khz](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/150khz.png?raw=true)
 
 ## Charging Coil Design
 
@@ -189,11 +189,11 @@ This is problematic, since (as mentioned previously), the output current is limi
 A series resistor is effective in damping this negative peak (it actually makes the zeros conjugate complex, which means that no sinusoid can excite them! Isn't that sick?). In lieu of solving for the new zeros, I present the bode plot for each solution for comparison in Figure \ref{fig:bodes} with my chosen values of $L, C, \text{and } C_{flying}$. The bode plot shows the negative peak to occur around $2kHz << 45kHz$, which is sufficiently low to avoid using a series resistor. That said, the inductor gets very hot during normal operation, so it likely makes sense to use a series resistor for the purposes of reducing the power dissipation.
 
 Bode Plots of the above transfer functions. Note that all have the same LC resonant peak:
-![bode](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/bodes.png)
+![bode](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/bodes.png?raw=true)
 
-### Construction
+## Construction
 I wound my own circular (2 inch diameter) air-core planar inductors using 45 loops of 26AWG wire, achieving a measured inductance of roughly $127\mu H$ in both. I used a $100nF$ capacitor, in parallel with the inductors, to achieve a resonant frequency of $\approx 45kHz$. The receiver side simply has an LED soldered in parallel. For practical applications, it likely makes sense to use a full bridge rectifier after the inductor output for improved efficiency, however this proved unnecessary to satisfy the requirements for this project, so I was a litle lazy. Since $C_{flying}=44\mu H \gg C = 100nF$, using a resistor was unnecessary.
 
-# Video!
+# Video
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/bZeDvNAOeh4?si=kiVoO6PRo5frUBzg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
