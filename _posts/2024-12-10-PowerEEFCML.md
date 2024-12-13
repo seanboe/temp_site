@@ -2,7 +2,7 @@
 layout: post
 current: post
 cover: assets/images/misc/powereefcml/car.png
-title: FCML for an RC Car - Part 1
+title: FCML for an RC Car
 categories: [ Miscellaneous ]
 ---
 
