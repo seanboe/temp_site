@@ -17,7 +17,7 @@ Before I go any further, there were also few technical constraints:
 For the report, we were also required to show all of the math / steps into designing each converter, which is why it's a little pedantic, unlike my usual posts. Hopefully you'll bear with it!
 
 
-The charger is consists of a set of coupled inductors, one on the car and one on the ground (the "charging station"), with the transmitter driven by a 3-level FCML. The converter is controlled in open-loop by a Nucleo STM32 development board, which is responsible for setting each switch state, although the PCB has outputs for closed-loop control. In normal operation, the FCML outputs a $\approx50kHz$ three-level squarewave to drive the charging coils, which are resonant around $45kHz$.
+The charger is consists of a set of coupled inductors, one on the car and one on the ground (the "charging station"), with the transmitter driven by a 3-level FCML. The converter is controlled in open-loop by a Nucleo STM32 development board, which is responsible for setting each switch state, although the PCB has outputs for closed-loop control. In normal operation, the FCML outputs a $\approx43kHz$ three-level squarewave to drive the charging coils, which are resonant around $45kHz$.
 
 The following discussion will cover the design of the FCML bias supplies, the FCML itself, and the charger. Experimental data is provided to verify that they work properly.
 
