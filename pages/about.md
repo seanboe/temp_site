@@ -14,5 +14,7 @@ Don't hesistate to reach out! Shoot me an [email](mailto:boeseany21@gmail.com) i
 You should also check out some of my friends' blogs too - they also have some cool posts!
 - __[KG](https://kogappa.com)__
 - [Mia](https://mialunachen.github.io)
+- [Seb](https://sebochoa.com)
+- [Trevor](https://langleydesigns.com)
 
 If you're curious about how I made this, I used Jekyll and Github pages to build / deploy the site and used the [Affiliates Theme](https://bootstrapstarter.com/template-affiliates-bootstrap-jekyll/) with a few modifications (including dark mode!) to make this as cool as I could. 
