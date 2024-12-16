@@ -6,7 +6,7 @@
   :root {
     --primary_text: black;
     --secondary_text: #333;
-    --bar-accents: #eee;
+    --bar-accents: #b9bab6;
     --bg: #fff;
     --bg-offset: #efefef;
     --link: #333;
@@ -726,6 +726,13 @@ figure {
 
 .navbar-toggler {
   color: var(--primary_text)
+}
+
+div[role="doc-endnotes"] {
+  position: relative;
+  margin-top: 1rem; /* Adjust spacing above the line */
+  padding-top: 1rem; /* Adjust spacing below the line */
+  border-top: 1px solid var(--bar-accents); /* Horizontal rule styling */
 }
 
 // a.anchor {

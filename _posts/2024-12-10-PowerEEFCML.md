@@ -87,9 +87,13 @@ Since the input voltage is relatively low compared to the maximum switch pin vol
 
 1. Add capacitance across the magnetizing inductance until the ringing period roughly doubles
 2. Compute the parasitic capacitance 
+
 $$C_{par} = \frac{C_{snub}}{\left( \frac{t_{snub}}{t_{orig}} \right)^2-1}$$
-3. item Compute the leakage inductance 
+
+3. item Compute the leakage inductance
+
 $$L_{lk}=\frac{t_{orig}^2}{C_{par}*4\pi^2}$$
+
 4. item Calculate the snubber resistance to critically damp the parasitic LC circuit: $R = \sqrt{ \frac{L}{C} }$
 
 The effectiveness of the clamp: 
@@ -99,13 +103,25 @@ The effectiveness of the clamp:
 
 ## Motivation for FCMLs
 
-Multilevel converters are growing in popularity for their ability to efficiently handle high voltage and frequency operation. Traditional two-level inverters place high stress on the output switches due to high $V_{DS}$, which is typically correlated with greater $R_{DS(on)}$ (higher conduction losses), and require high switching frequency $f_{sw}$ to reduce total harmonic distortion (THD) on the output\footnote{Practical implementations involve lower $f_{sw}$ with more aggressive output filters to reduce losses. Unfortunately, this simply converts switching losses into conduction losses with marginal benefit.}. Output switches can be connected in parallel to distribute current among individual switches and simplify cooling requirements. However, this approach introduces a timing challenge, as the turn-on of each parallel switch must be carefully synchronized\footnote{In practice, this is difficult to do due to parasitics, specifically, trace inductance on PCBs.} to ensure effective operation at high frequencies. Similar strategies (and issues) arise when placing switches in series to reduce $V_{DS}$.
+Multilevel converters are growing in popularity for their ability to efficiently handle high voltage and frequency operation. Traditional two-level inverters place high stress on the output switches due to high $V_{DS}$, which is typically correlated with greater $R_{DS(on)}$ (higher conduction losses), and require high switching frequency $f_{sw}$ to reduce total harmonic distortion (THD) on the output[^1]. Output switches can be connected in parallel to distribute current among individual switches and simplify cooling requirements. However, this approach introduces a timing challenge, as the turn-on of each parallel switch must be carefully synchronized[^2]to ensure effective operation at high frequencies. Similar strategies (and issues) arise when placing switches in series to reduce $V_{DS}$.
 
-The multilevel converter is and elegant solution to these problems. By establishing known node voltages between each switch, designers can precisely set $V_{DS}$ to lower voltages, which naturally reduces $R_{DS(on)}$ and thereby conduction losses. This reduces the stress on any given switch, thereby dismissing the need for multiple switches at each stage. Most multilevel converters also lend themselves neatly to commutation patterns which "overlap" switch states - that is, it is unlikely that any switch needs to toggle consecutively - which decreases the necessary $f_{sw}$ for the switches despite maintaining a commutatoin frequency of $f_{sw}$. This, of course, reduces switching losses. Finally, the multilevel output allows tighter approximation of most output waveforms, reducing unwanted harmonics in the output and thereby decreasing THD\footnote{This serves two benefits: 1) Lower necessary switch frequency, since higher switch frequency allows a better approximation of a sinewave, and (assuming the inverter is used to drive a motor) 2) Lower core losses. Marginal benefits are also achieved with lower current ripple, which may result in slight conduction loss due to the skin effect.}. This allows weaker LC output filters, decreasing space requirements and reducing conduction losses. Typical multilevel converters in industry involve between 9-14 levels.
+[^1]:Practical implementations involve lower $f_{sw}$ with more aggressive output filters to reduce losses. Unfortunately, this simply converts switching losses into conduction losses with marginal benefit
 
-The _flying capacitor_ multilevel converter establishes known node voltages between the switches with a floating capacitor charged to a known fraction of the rail voltage depending on the number of converter levels. Charging occurs naturally\footnote{Closed-loop control over the flying capacitor voltage is still a (somewhat) open problem in research. The output current capability is limited by the flying capacitances, making the design of professional FCMLs a balance between space and power output. Multiple control and sizing strategies have been devised to optimize this.} during commutation, although resistors can be used to pre-charge the capacitor(s) to their levels prior to operation, which is what my design implements. Other common topologies include the cascaded h-bridge inverter and the diode-clamped inverter.
+[^2]:In practice, this is difficult to do due to parasitics, specifically, trace inductance on PCBs.
 
-Although the effects of higher $f_{sw}$ and multiple levels on THD should be intuitive, proving it analytically is \href{https://ieeexplore.ieee.org/document/5311996}{involved}. I opted to use numerical methods\footnote{Pulse-width modulation waveforms were generated given an input (target) sinewave and a switching frequency, and the DFT was taken to examine their frequency content. An output filter on the converter model was omitted to make the data more clear at the expense of practical THD modeling.} to show the benefit of multiple levels and switching frequency instead. Figure \ref{fig:fcvslevels} clearly demonstrates the benefits of increasing switching frequency and output levels, with both reducing total harmonic distortion, as expected\footnote{Some $f_{s}$ omitted for clarity; an output filter wasn't included in this analysis, resulting in unrealistic aliasing and THD approximations at certain harmonics.}. 
+The multilevel converter is and elegant solution to these problems. By establishing known node voltages between each switch, designers can precisely set $V_{DS}$ to lower voltages, which naturally reduces $R_{DS(on)}$ and thereby conduction losses. This reduces the stress on any given switch, thereby dismissing the need for multiple switches at each stage. Most multilevel converters also lend themselves neatly to commutation patterns which "overlap" switch states - that is, it is unlikely that any switch needs to toggle consecutively - which decreases the necessary $f_{sw}$ for the switches despite maintaining a commutatoin frequency of $f_{sw}$. This, of course, reduces switching losses. Finally, the multilevel output allows tighter approximation of most output waveforms, reducing unwanted harmonics in the output and thereby decreasing THD[^3]. This allows weaker LC output filters, decreasing space requirements and reducing conduction losses. Typical multilevel converters in industry involve between 9-14 levels.
+
+[^3]:This serves two benefits: 1) Lower necessary switch frequency, since higher switch frequency allows a better approximation of a sinewave, and (assuming the inverter is used to drive a motor) 2) Lower core losses. Marginal benefits are also achieved with lower current ripple, which may result in slight conduction loss due to the skin effect.
+
+The _flying capacitor_ multilevel converter establishes known node voltages between the switches with a floating capacitor charged to a known fraction of the rail voltage depending on the number of converter levels. Charging occurs naturally[^4] during commutation, although resistors can be used to pre-charge the capacitor(s) to their levels prior to operation, which is what my design implements. Other common topologies include the cascaded h-bridge inverter and the diode-clamped inverter.
+
+[^4]:Closed-loop control over the flying capacitor voltage is still a (somewhat) open problem in research. The output current capability is limited by the flying capacitances, making the design of professional FCMLs a balance between space and power output. Multiple control and sizing strategies have been devised to optimize this.
+
+Although the effects of higher $f_{sw}$ and multiple levels on THD should be intuitive, proving it analytically is \href{https://ieeexplore.ieee.org/document/5311996}{involved}. I opted to use numerical methods[^5] to show the benefit of multiple levels and switching frequency instead. Figure \ref{fig:fcvslevels} clearly demonstrates the benefits of increasing switching frequency and output levels, with both reducing total harmonic distortion, as expected. 
+
+[^5]:Pulse-width modulation waveforms were generated given an input (target) sinewave and a switching frequency, and the DFT was taken to examine their frequency content. An output filter on the converter model was omitted to make the data more clear at the expense of practical THD modeling.
+
+[^6]:Some $f_{s}$ omitted for clarity; an output filter wasn't included in this analysis, resulting in unrealistic aliasing and THD approximations at certain harmonics.
 
 $f_{s}=50Hz$ Demonstration of multilevel PWM model driving RL Low-Pass:
 ![PWM Demo](https://github.com/seanboe/temp_site/blob/master/assets/images/misc/powereefcml/PWMDemo.png?raw=true)
@@ -127,15 +143,20 @@ Since I chose to make a three-level inverter (the simplest type, since only one 
 Thus, $Q_{2}=\overline{Q_{3}}$ and $Q_{1}=\overline{Q_{4}}$. In describing the commutation order, I will refer to $Q_{2}=\overline{Q_{3}}$ as state $A$, and the negation thereof as $\overline{A}$. Similarly, I'll use $B$ for the $1, 4$ pair.
 
 1. $A; B$: $V_{out}=V_{Batt}$
-2. $A; \overline{B}$: $V_{out}=\frac{V_{Batt}}{2}$; $V_{flying}\uparrow$\footnote{The switch states create an RC charging circuit, causing $V_{flying}$ to increase.}
+2. $A; \overline{B}$: $V_{out}=\frac{V_{Batt}}{2}$; $V_{flying}\uparrow$[^7]
 3. $\overline{A}; \overline{B}$: $V_{out}=0$
-4. $\overline{A}; B$: $V_{out}=\frac{V_{Batt}}{2}$; $V_{flying}\downarrow$\footnote{The switch states create an RC discharging circuit (no source voltage) causing $V_{flying}$ to decrease.}
+4. $\overline{A}; B$: $V_{out}=\frac{V_{Batt}}{2}$; $V_{flying}\downarrow$[^8]
+
+[^7]:The switch states create an RC charging circuit, causing $V_{flying}$ to increase.
+[^8]:The switch states create an RC discharging circuit (no source voltage) causing $V_{flying}$ to decrease.
 
 Conveniently, the $A$ and $B$ states are cyclical and offset by 90 degrees in phase. That means both states can be PWM timer pins, thereby simplifying the code. The switching frequency can simply be set with the timer prescaler and autoreload register, which I can easily do in CubeMX since I'm using an STM32 microcontroller.
 
 Although I only control the FCML in open loop, the fact that the $A$/$B$ states can be controlled with timer pins lends itself to a simple implementation of closed-loop control. Managing the voltage of $C_{flying}$ is done by changing the relative difference in time between states 2 and 4 (since those correspond to charging and discharging the flying capacitor), which can be done by changing the duty cycle of the PWM output.
 
-It is important to consider that the stability of the flying capacitor voltage (and thus the entire converter) is extremely dependent on the capacitor voltage staying, nominally, at $\frac{V_{Batt}}{2}$. This equivalently assumes that the charge gained and lost during states 2 and 4 is equal. If given a DC load, this is an easy assumption to make; the load $R$ is constant for both states, allowing the capacitor to charge and discharge with $\tau = RC$. This is not the case for a reactive load (which the inductive coil is), which makes closed-loop control over $V_{flying}$ imperative and my open-loop version ill-suited for this problem\footnote{That said, it should be noted that reactive loads can be approximated as purely resistive for $f_{sw} \gg f_{0}$.}.
+It is important to consider that the stability of the flying capacitor voltage (and thus the entire converter) is extremely dependent on the capacitor voltage staying, nominally, at $\frac{V_{Batt}}{2}$. This equivalently assumes that the charge gained and lost during states 2 and 4 is equal. If given a DC load, this is an easy assumption to make; the load $R$ is constant for both states, allowing the capacitor to charge and discharge with $\tau = RC$. This is not the case for a reactive load (which the inductive coil is), which makes closed-loop control over $V_{flying}$ imperative and my open-loop version ill-suited for this problem[^9].
+
+[^9]:That said, it should be noted that reactive loads can be approximated as purely resistive for $f_{sw} \gg f_{0}$.
 
 The isolated gate drivers I'm using are the [UCC23511B](https://www.ti.com/lit/ds/symlink/ucc23511.pdf?ts=1732635333649&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FUCC23511), which achieve logic isolation with an e-diode. They don't use light for their operation, which makes them faster (propagation delay is on the order of $nS$, while optical components typically switch on the order of $\mu S$), and apparently last longer. The driver is turned on with a logic-level mosfet since it requires $50mA$ forward current to turn on, a bit more than GPIO pins are typically capable of.
 
